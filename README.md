@@ -96,6 +96,8 @@ This module recognises when the laser beam is pointing at its sensor. The sensor
 
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
 
+## Prototypes
+
 ###### First Prototypes
 
 **Ultrasonic**
