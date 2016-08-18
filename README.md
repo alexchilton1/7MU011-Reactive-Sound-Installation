@@ -5,6 +5,26 @@ A sound installation that responds to stimuli and continuously evolves via user 
 
 ## Prerequisites
 
+## Arduino
+
+The chosen board for this project is the Arduino Nano. The Nano is a small, powerful and breadboard-friendly board based on the ATmega328. The ATmega328 has 32KB of Flash memory. Having Flash memory and a microcontroller on the same chip means advantage can be taken of additional intelligence. For example there is an additional ROM (Read-only Memory) section holding the code for handling the Flash programming. The code does not only provide functions to erase or program the Flash memory, it also provides boot code. Even with a completely erased Flash, the chip can still execute this boot code and accept inputs via the serial port. The ROM is not erasable, therefore, applications can always rely on it being present. Also it contains 1KByte of EEPROM (Electrically Erasable Programmable Read-only Memory) which is user-modifiable read-only memory (ROM) that can be erased and reprogrammed repeatedly. Finally it has 2KBytes of RAM (Random-access Memory) is a form of computer data storage. A random-access memory device allows data items to be accessed (read or written) in almost the same amount of time irrespective of the physical location of data inside the memory. RAM is the place where the operating system, application programs and data in current use are kept so that they can be quickly reached by the processor.
+
+(Voltage, pins, uses)
+
+```
+Microcontroller: ATmega328
+Operating Voltage (logic level): 5 V
+Input Voltage (recommended): 7-12 V
+Input Voltage (limits): 6-20 V
+Digital I/O Pins: 14 (of which 6 provide PWM output)
+Analogue Input Pins: 8
+DC Current per I/O Pin: 40 mA
+Flash Memory: 32 KB of which 2 KB used by bootloader
+Clock Speed: 16 MHz
+```
+
+![Arduino Nano ATmega328](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_007.jpeg)
+
 ## Sensors
 ###### Sensors Used
 **Ultrasonic Module HC-SR04 Distance Sensor**
@@ -61,6 +81,9 @@ Beam Output: 100mW
 Max Current: ~30mA (Laser on)
 ```
 
+The 100mW laser module emits a small intense focused beam of visible red light. Alone, this sensor would be useless to the project as it does not offer and type of input, it would require an external sensor to trigger it. However the interest in this module lies with a coupled receiver module that will allow the creatation of a small circuit which, in turn, will add another different way to affect the variables in the project.
+
+
 ![KY-008 650NM 5V Laser Sensor Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_017.jpeg)
 
 **Laser Receiver Transceiver LED Module**
@@ -69,5 +92,13 @@ Max Current: ~30mA (Laser on)
 Working Voltage: 5V (DC)
 ```
 
+This module recognises when the laser beam is pointing at its sensor. The sensor in question is an LDR (light-dependent resistor), the resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
+
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
+
+###### First Prototypes
+
+**Ultrasonic**
+
+![Ultrasonic First Prototype]
 
