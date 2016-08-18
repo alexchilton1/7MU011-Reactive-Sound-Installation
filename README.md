@@ -100,5 +100,5 @@ This module recognises when the laser beam is pointing at its sensor. The sensor
 
 **Ultrasonic**
 
-![Ultrasonic First Prototype]
+![Ultrasonic First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_025.jpeg)
 
