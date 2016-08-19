@@ -100,7 +100,17 @@ This module recognises when the laser beam is pointing at its sensor. The sensor
 
 ###### First Prototypes
 
+After the datasheets for the modules had been collected and studied it was time to start progamming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The way it has to be wired along with its capability are the framework in deciding how it must be programmed.
+
 **Ultrasonic**
+
+The first sensor  to be programmed was the Ultrasonic Module HC-SR04 Distance Sensor, the device features four pins; a VCC (Voltage Common Collector), a Trigger pin, an Echo pin and GND (Ground). The Nano can supply the necessary 5V and GND direct to the sensor thus dealing with the power aspect of the module. To be able to use this sensor to measure distance requires an understanding of how the trigger and echo pins operate, the trigger pin has to be sent to a digital/analogue output pin on the Arduino and the echo pin has to be routed to a digital/analogue input. The tigger pin requires a pulse producing a HIGH output for a minimum of 10μs (microseconds), the sensor then has to wait for a HIGH level to return on the echo pin. The length of time the echo pin stays HIGH corresponds to the distance that the ultrasonic sound has travelled. The quicker the response, the closer the sensor is to an obstacle.
+
+For this prototype the trigger pin was routed to A1 (Analogue Pin 1) and the echo pin to A0. The trigger pin receives a HIGH pulse for 10μs, when the return is picked up by the echo pin this length of time since the send and receive is stored as the duration. The duration is used in the final calculation to work out the distance in cm. 
+
+Sound travels at approxiamtely 340 meters per second. This corresponds roughly to 29.412μs per centimeter. To measure the distance the sound has travelled, this formula is used: Distance = (Time x SpeedOfSound)/2. The "2" is in this formula becuase the sound has to tavel back and fourth. The sound travels away from the sensor first, then it bounces back off a surface and returns. The best wasy to read the distance in centimeters is to use this formula: Centimeters = ((Microseconds/2)/29).
+
+An LED is also used as a visual prompt to the current status of the sensor. The LED is a Kingbright 5mm, 3-pin, green/red, though-hole LED. It has forward voltage of 2.5V and a forward current of 25mA on green and 30mA on red. With the source voltage being 5V, the forward voltage being 2.5V and the max forward current being 30mA a 100Ω (ohm) resistor would be recommended. This would mean each 100Ω resistor would dissipate 90 mW, the diodes dissipate 75 mW, the total power dissipated by the array would equal 165 mW and the array would draw current of 30 mA from the source. However as a precaution a 150Ω resistor was used. The LED has three pins, a GND and two VCC pins. The resistor is attached to the GND pin and then routed back to the GND pin on the Arduino, the two VCC pins are what receive signals to light both of the colours.
 
 ![Ultrasonic First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_025.jpeg)
 
