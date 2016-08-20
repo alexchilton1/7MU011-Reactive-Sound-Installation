@@ -156,7 +156,7 @@ The only problem with the wasy in which this sensor works is that it emits a LOW
 
 PIR sensors are more complex that IR proximity sensors because there are more variables that affect the sensors input and output. The sensor itself has two channels in it, each of the channels consist of special IR sensitive material. The lens does not do a great deal, the two channels can look out through this providing the sensitivity of the sensor. When the sensor is idle both channels detect the same amount of IR, the ambient amount radiated from the room, walls or outdoors. When a warm body, such as, a human or animal passes in front of the sensor it is identified by one half of the PIR sensor. This causes a positive differential between the two halves. When the warm body leaves the sensing area, the reverse happens, whereby the sensor generates a negative differential. These change pulses are what is detected. The IR sensor is housed in a hermetically sealed metal to help improve immunity to noise, temperature and humidity. There is a window made of IR-transmissive material, typically coated silicon, that protects the sensing element. Behind this window are the two balanced sensors.
 
-
+ 
 
 - Detects motion, prints output_pauses serial printing until movement stops (LOW signal for == pause vaiable), to make sensor less responsive on purpose.
 
