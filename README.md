@@ -19,11 +19,14 @@ mA - milliamps
 MHz - Megahertz
 mW - milliwatts
 NM - Nanometers
+PD - Pure Data
 PIR - Passive Infrared
 RAM - Random Access Memory
 ROM - Read-only Memory
 V - Volts
 VF - Forward Voltage
+Ω - Ohms
+° - Degrees
 ```
 
 ## Background
@@ -143,10 +146,8 @@ An LED is also used as a visual prompt to the current status of the sensor. The 
 
 The IR sensor has 3 pins: VCC, GND and an output pin which sends either a HIGH or LOW signal depending on its detection status. This sensor is capable of detecting the presence of an object, however, it is not capable of determining the distance of the obstruction. This sensor is ideal for triggering on/off values and coupled with Pure Data it could be used to randomise variables within a sequence or prompt the introduction of a new piece of audio to the overall mix. The infrared transmitter emits an infrared radiation, when there is an obstacle in range, the wave bounces back to the receiver and the circuit becomes active. The range of the sensor can be adjusted by its onboard potentiometer, the datasheet professes that the range is 2cm-30cm but this does not seem to be the case. The safe range before the sensor becomes unpredicable seems to be around 25cm, any more and the module becomes unreliable. Also the sensor suffers heavily from light interference, natural light seems to be the worst. Sunlight makes the module very unreliable and artifical light also seems to affect its reliability.
 
-The sensor has its VCC and GND pins connected to the Arduino the same way as the ultrasonic sensor, the OUT pin is routed to A0. The sensor has been programmed to know, in compliance with the datasheet, that if and obstacle is within its agreed range it outputs a LOW singal. If the sensor does not detect an obstruction then its output is HIGH. An LED has been connected to digital pin 12 to help aid this detection process visually. With the source voltage from the Nano at 5V, the VF at 2.5V and the IF at 30mA the recommended resistor was again 100Ω
+The sensor has its VCC and GND pins connected to the Arduino the same way as the ultrasonic sensor, the OUT pin is routed to A0. The sensor has been programmed to know, in compliance with the datasheet, that if and obstacle is within its agreed range it outputs a LOW singal. If the sensor does not detect an obstruction then its output is HIGH. An LED has been connected to digital pin 12 to help aid this detection process visually. With the source voltage from the Nano at 5V, the VF at 2.5V and the IF at 30mA, the recommended resistor was again at 100Ω. When the module detects an obstacle the LED turns blue, when no obstacle is present the LED switches off.
 
-- LED FV = 1.8V
-- code = variable HIGH/LOW
-- LOW if obstacle, have to switch in Pure Data
+The only problem with the wasy in which this sensor works is that it emits a LOW signal when the sensor is active and a HIGH signal was it is inactive. This function is opposite to the way the PD patch has been set up, when a variable is active the signal is HIGH, so within PD the receive signals have been switched.
 
 ![IR Proximity First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_023.jpeg)
