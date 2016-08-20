@@ -151,3 +151,9 @@ The sensor has its VCC and GND pins connected to the Arduino the same way as the
 The only problem with the wasy in which this sensor works is that it emits a LOW signal when the sensor is active and a HIGH signal was it is inactive. This function is opposite to the way the PD patch has been set up, when a variable is active the signal is HIGH, so within PD the receive signals have been switched.
 
 ![IR Proximity First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_023.jpeg)
+
+**PIR Motion Sensor**
+
+- Detects motion, prints output_pauses serial printing until movement stops (LOW signal for == pause vaiable), to make sensor less responsive on purpose.
+
+![PIR First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_029.jpeg)
