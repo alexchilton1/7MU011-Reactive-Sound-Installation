@@ -1,6 +1,30 @@
 # 7MU011-Reactive-Sound-Installation
 A sound installation that responds to stimuli and continuously evolves via user input. This input is made possible through the use of a range of different sensors. This project employs the use of HCI (Human-Computer Interaction) through several Arduinos. The software element of this project was built using two main platforms; each sensor had its behaviour written using the Arduino's IDE (Intergrated Development Environment). The audio section of this installation was built in Pure Data.
 
+## Acronyms/Abbreviations/Symbols
+
+cm - centimeters
+DC - Direct Current
+EEPROM - Electrically Erasable Programmable Read-only Memory
+Hz - Hertz
+IC - Intergrated Circuit
+IF - Forward Current
+IR - Infrared
+KB - Kilobyte
+kHz - kilohertz
+LDR - Light Dependent Resistor
+LED - Light Emitting Diode
+m - metre
+mA - milliamps
+MHz - Megahertz
+mW - milliwatts
+NM - Nanometers
+PIR - Passive Infrared
+RAM - Random Access Memory
+ROM - Read-only Memory
+V - Volts
+VF - Forward Voltage
+
 ## Background
 
 ## Prerequisites
@@ -92,7 +116,7 @@ The 100mW laser module emits a small intense focused beam of visible red light. 
 Working Voltage: 5V (DC)
 ```
 
-This module recognises when the laser beam is pointing at its sensor. The sensor in question is an LDR (light-dependent resistor), the resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
+This module recognises when the laser beam is pointing at its sensor. The sensor in question is an LDR (light dependent resistor), the resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
 
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
 
@@ -108,7 +132,7 @@ The first sensor  to be programmed was the Ultrasonic Module HC-SR04 Distance Se
 
 For this prototype the trigger pin was routed to A1 (Analogue Pin 1) and the echo pin to A0. The trigger pin receives a HIGH pulse for 10μs, when the return is picked up by the echo pin this length of time since the send and receive is stored as the duration. The duration is used in the final calculation to work out the distance in cm. 
 
-Sound travels at approxiamtely 340 meters per second. This corresponds roughly to 29.412μs per centimeter. To measure the distance the sound has travelled, this formula is used: Distance = (Time x SpeedOfSound)/2. The "2" is in this formula becuase the sound has to tavel back and fourth. The sound travels away from the sensor first, then it bounces back off a surface and returns. The best wasy to read the distance in centimeters is to use this formula: Centimeters = ((Microseconds/2)/29).
+Sound travels at approxiamtely 340 metres per second. This corresponds roughly to 29.412μs per centimeter. To measure the distance the sound has travelled, this formula is used: Distance = (Time x SpeedOfSound)/2. The "2" is in this formula becuase the sound has to tavel back and fourth. The sound travels away from the sensor first, then it bounces back off a surface and returns. The best wasy to read the distance in centimeters is to use this formula: Centimeters = ((Microseconds/2)/29).
 
 An LED is also used as a visual prompt to the current status of the sensor. The LED is a Kingbright 5mm, 3-pin, green/red, though-hole LED. It has forward voltage of 2.5V and a forward current of 25mA on green and 30mA on red. With the source voltage being 5V, the forward voltage being 2.5V and the max forward current being 30mA a 100Ω (ohm) resistor would be recommended. This would mean each 100Ω resistor would dissipate 90 mW, the diodes dissipate 75 mW, the total power dissipated by the array would equal 165 mW and the array would draw current of 30 mA from the source. However as a precaution a 150Ω resistor was used. The LED has three pins, a GND and two VCC pins. The resistor is attached to the GND pin on the LED and then routed back to the GND pin on the Arduino, the two VCC pins receive HIGH and LOW signals to light both of the colours. For example, when one VCC pin is HIGH it would make the LED turn green, the VCC pin controlling the red side would be LOW at this point. In the reverse set up the LED would be red. The sensor is programmed check whether there is an obstacle in front of it. It measures the distance in front of it and if the distance is less that the chosen number, it will recognise that there is an obstacle in range. When this happens the LED will turn red, when the distance is greater than the chosen variable the LED is lit green and the sensor does not register that an obstacle is blocking it. It will however, still report the distance of any obstruction in cm. - DIGITAL PIN 10!
 
@@ -118,7 +142,7 @@ An LED is also used as a visual prompt to the current status of the sensor. The 
 
 The IR sensor has 3 pins: VCC, GND and an output pin which sends either a HIGH or LOW signal depending on its detection status. This sensor is capable of detecting the presence of an object, however, it is not capable of determining the distance of the obstruction. This sensor is ideal for triggering on/off values and coupled with Pure Data it could be used to randomise variables within a sequence or prompt the introduction of a new piece of audio to the overall mix. The infrared transmitter emits an infrared radiation, when there is an obstacle in range, the wave bounces back to the receiver and the circuit becomes active. The range of the sensor can be adjusted by its onboard potentiometer, the datasheet professes that the range is 2cm-30cm but this does not seem to be the case. The safe range before the sensor becomes unpredicable seems to be around 25cm, any more and the module becomes unreliable. Also the sensor suffers heavily from light interference, natural light seems to be the worst. Sunlight makes the module very unreliable and artifical light also seems to affect its reliability.
 
-The sensor has its VCC and GND pins connected to the Arduino the same way as the ultrasonic sensor, the OUT pin is routed to A0. The sensor has been programmed to know, in compliance with the datasheet, that if and obstacle is within its agreed range it outputs a LOW singal. If the sensor does not detect an obstruction then its output is HIGH. An LED has been connected to digital pin 12 to help aid this detection process visually. With the source voltage from the Nano at 5V, the VF at 2.5V and the FC at 30mA the recommended resistor was again 100Ω
+The sensor has its VCC and GND pins connected to the Arduino the same way as the ultrasonic sensor, the OUT pin is routed to A0. The sensor has been programmed to know, in compliance with the datasheet, that if and obstacle is within its agreed range it outputs a LOW singal. If the sensor does not detect an obstruction then its output is HIGH. An LED has been connected to digital pin 12 to help aid this detection process visually. With the source voltage from the Nano at 5V, the VF at 2.5V and the IF at 30mA the recommended resistor was again 100Ω
 
 - LED FV = 1.8V
 - code = variable HIGH/LOW
