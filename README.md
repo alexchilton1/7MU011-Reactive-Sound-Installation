@@ -4,6 +4,7 @@ A sound installation that responds to stimuli and continuously evolves via user 
 ## Acronyms/Abbreviations/Symbols
 
 cm - centimeters
+
 DC - Direct Current
 EEPROM - Electrically Erasable Programmable Read-only Memory
 Hz - Hertz
