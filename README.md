@@ -173,7 +173,10 @@ The first step in the process is to state where the sensor and LED are routed to
 #define ctsPin 2 // This means tell the Arduino when it reads ctsPin (capacitive touch sensor) replace it with 2 (digital pin 2)
 int LED1 = 10 // This adds the first LED as an integer on digital pin 10
 ```
-The reason define is used for the sensor and int is used for the LED is so that - KB memory etc -
+The reason define is used for the sensor and int is used for the LED is because the #define function acts as a search an replace setting and int is a variable. Whenever the compiler reads "ctsPin" it now believes it saw "2". It can't be changed while the sketch is running however, it takes no memory in the processor. Meanwhile the int function is a variable and does take a small amount of memory, 2 bytes to be precise, to store the value and takes an extra bit of memory to store the original value. This, however, allows the sketch to modify the variable under any desired circumstance and use the altered
+
+ is a variable.  It takes a little memory (two bytes) to store the value, and in fact it takes a little more memory to store the original value you started with.  However, this allows the sketch to modify that variable under any desired circumstances, and thus use the new value from that time on.
+
 
 GROUNDING ERROR! - Laptop, no charger.
 
