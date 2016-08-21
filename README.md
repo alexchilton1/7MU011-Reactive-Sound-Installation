@@ -161,3 +161,20 @@ The smart part of the PIR sensor is the optics. The lens is just a piece of plas
 The prototype is designed to detect motion and turn on the LED when this is true providing a visual indication. The PIR detects movement and prints this to the serial, it however is programmed to pause serial printing until there is a state change and the motion stops. It will continue to detect motion for as long it recognises that movement is present, when the movement haults the sensor is programmed with a pause time, if the hault in motion is greater than the stated pause time the sensor will print that over serial and send a LOW signal to the LED causing it to switch off. The sensor has been made less responsive like this on purpose, not printing to serial every 100ms for example, so that it can provide a precise function in the PD patch. This function is to change the variables in the ambient section, if it rapidly changed it would not operate as intended and would begin to interfere with the other sections. Using the PIR in this way helps to keep the ambience dynamic as it ungulates in the background without becoming too distacting.
 
 ![PIR First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_029.jpeg)
+
+**Touch Sensor**
+
+The touch sensor can sense the electrical capacitance of the human body. The sensor produces a signal that gets routed to the send pin and waits for the receive pin to change to this new state. A variable is incremented inside the loop to time the state change of the receive pin. The value of this variable is then reported as HIGH or LOW meaning 1 or 0 respectively.
+
+The sensor is programmed to respond to touch, sending a HIGH signal when contact is made and a LOW signal when there is none. The response is very quick, with the cycle refreshing every 100ms, this means that everytime it is touched and released it will trigger and there is no delay.  An LED has again been used as a visual aid, when the signal is HIGH the LED is active and when LOW it is not.
+
+The first step in the process is to state where the sensor and LED are routed to on the Arduino.
+```
+#define ctsPin 2 // This means tell the Arduino when it reads ctsPin (capacitive touch sensor) replace it with 2 (digital pin 2)
+int LED1 = 10 // This adds the first LED as an integer on digital pin 10
+```
+The reason define is used for the sensor and int is used for the LED is so that - KB memory etc -
+
+GROUNDING ERROR! - Laptop, no charger.
+
+![Touch Sensor Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_031.jpeg)
