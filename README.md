@@ -197,4 +197,4 @@ There are a few known issues with capacitive sensors; especially when it comes t
 
 **Laser Sensor and Laser Receiver Module**
 
-![Laser Sensor and Laser Receiver Module First Prototype]()
+![Laser Sensor and Laser Receiver Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_038.jpeg)
