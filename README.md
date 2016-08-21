@@ -170,12 +170,26 @@ The sensor is programmed to respond to touch, sending a HIGH signal when contact
 
 The first step in the process is to state where the sensor and LED are routed to on the Arduino.
 ```
-#define ctsPin 2 // This means tell the Arduino when it reads ctsPin (capacitive touch sensor) replace it with 2 (digital pin 2)
+#define ctsPin 2 // This tells the Arduino to look for ctsPin (capacitive touch sensor) 
+                 // and replace it with 2 (digital pin 2)
 int LED1 = 10 // This adds the first LED as an integer on digital pin 10
 ```
-The reason define is used for the sensor and int is used for the LED is because the #define function acts as a search an replace setting and int is a variable. Whenever the compiler reads "ctsPin" it now believes it saw "2". It can't be changed while the sketch is running however, it takes no memory in the processor. Meanwhile the int function is a variable and does take a small amount of memory, 2 bytes to be precise, to store the value and takes an extra bit of memory to store the original value. This, however, allows the sketch to modify the variable under any desired circumstance and use the altered
+The reason define is used for the sensor and int is used for the LED is because the #define function acts as a search an replace setting and int is a variable. Whenever the compiler reads "ctsPin" it now believes it saw "2". It can't be changed while the sketch is running however, it takes no memory in the processor. Meanwhile the int function is a variable and does take a small amount of memory, 2 bytes to be precise, to store the value and takes an extra bit of memory to store the original value. This, however, allows the sketch to modify the variable under any desired circumstance and use the altered value from that point on.
 
- is a variable.  It takes a little memory (two bytes) to store the value, and in fact it takes a little more memory to store the original value you started with.  However, this allows the sketch to modify that variable under any desired circumstances, and thus use the new value from that time on.
+The sketch then requires the serial to started on the chosen baud rate and the pinModes to be specified in the void setup. The serial is set to begin on baud rate 9600, the ctsPin is set as an input and the LED is chosen as the output. The void loop is where the the previously mentioned variable between the send and receive pin is detailed. The variable value is stated as the condition of the touch sensor. The code for the loop would look similar to this.
+```
+void loop() {
+  int ctsValue = digitalRead(ctsPin); // Variable is condition of sensor
+  if (ctsValue == HIGH){ // If sensor is touched...
+    digitalWrite(LED1, HIGH); //  Turn LED on
+    Serial.println("1"); // Then print the number 1 to the serial
+  }
+  else{ // Otherwise, if it is not touched...
+    digitalWrite(LED,LOW); //  Turn LED off
+    Serial.println("0"); Then print the number 0 to the serial
+  } 
+  delay(100); // Delay the steps in this process by 100ms
+```
 
 
 GROUNDING ERROR! - Laptop, no charger.
