@@ -190,8 +190,11 @@ void loop() {
   } 
   delay(100); // Delay the steps in this process by 100ms
 ```
-
-
-GROUNDING ERROR! - Laptop, no charger.
+There are a few known issues with capacitive sensors; especially when it comes to using them near or with a laptop. The grounding of the Arduino board is very important in capacitive sensing and it is imperative the board has some ground connection. A main problem that seems to materialise is with laptops not being connected to the mains power via the charging cable. The laptop itself tends to become sensitive and bringing a hand near the laptop will change the returned values. Connecting the charging cable to the laptop usually resolves the problem.
 
 ![Touch Sensor Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_031.jpeg)
+
+
+**Laser Sensor and Laser Receiver Module**
+
+![Laser Sensor and Laser Receiver Module First Prototype]()
