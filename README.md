@@ -280,10 +280,7 @@ void loop() {
     delay(300); //print interval in ms. Recommended to use above 60ms to prevent trigger and echo signals becoming confused.
     }
 ```
-How the SonarSensor group functions in the sketch now has to be delared; this is so that it can be recalled in the loop section. The void indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed HIGH for at least 10µs before waiting for the echo to return the signal.
-
--calculation
--else if
+How the SonarSensor group functions in the sketch now has to be delared; this is so that it can be recalled in the loop section. The "void" indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed HIGH for at least 10µs before waiting for the echo to return the signal. So it sets to LOW, pulses HIGH then goes LOW. When the echo pin receives a HIGH return pulse, the time that elapses equals the duration. The distance uses the duration in the calculation as seen below. Now, because the sensors have been grouped and are ready to be recalled in the loop section, their behaviour can now be written here. If the first sensor encounters an obstacle that is closer than 20cm it turns LED1 on and LED2 off. If the obstacle is further than 20cm the reverse happens. Because the LED used is a bi-colour green and red LED, both times it is impacting the same one.
 ```
 void SonarSensor(int trigPin, int echoPin) {
     digitalWrite(trigPin, LOW);
@@ -320,6 +317,6 @@ void SonarSensor(int trigPin, int echoPin) {
   }
 }
 ```
--first multiple sensor sketch, so did take quite a lot of trial and error to get it working correctly.
+The other two sensors are programmed the same way. As this was the first attempt at a multiple sensor sketch it did take quite a lot of trial and error to get it working correctly. Using if else if was the way the sketch finally became usuable and worked in the corect manner. However, through perseverance, the idea became a reality and offered a template to start working from on other mulitple sensor sketches.
 
 ![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
