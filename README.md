@@ -8,6 +8,7 @@ DC - Direct Current
 EEPROM - Electrically Erasable Programmable Read-only Memory
 Hz - Hertz
 IC - Intergrated Circuit
+IDE - Integrated Development Environment
 IF - Forward Current
 IR - Infrared
 KB - Kilobyte
@@ -197,6 +198,25 @@ There are a few known issues with capacitive sensors; especially when it comes t
 
 **Laser Sensor and Laser Receiver Module**
 
-The way this circuit was supposed to work...
+The way this circuit was designed to work, was by the laser beaming its output into the LDR of the laser receiver module which would the output a variable. If the signal was HIGH then the beam was present, if LOW the beam of light had been broken by an obstacle. This would presumably mean that a person had walked past causing the line of sight of the sensor to become obstructed, thereby, triggering a signal over serial to PD. The laser sensor module simply required to be connected to 5V and GND pins. The receiver module was programmed similiar to how the touch sensor was coded. The input of the receiver was connected to the Arduino pin A0. Using the analogRead function within the Arduino IDE the initial value range was analised to observe output of the sensor when the laser was present and removed.
+```
+void loop() {
+  Serial.println(analogRead(ldrPin)); // This prints the output over serial
+  delay(100); // Delays the process by 100ms each time
+  }
+```
+The output of the sensor ranged from 2-20 when the laser was removed and between 1010-1019 when the laser was shone onto the receiver. With this in mind it was fairly simple to decide how best to programme the circuit for both being efficient in the sketch and producing usable results in PD. An LED was again used as a visual aid, using a 150Ω resistor as in the previous prototypes. For PD, the output was scaled between 0 and 1. This was accomplished by dividing the output of the receiver by 1000. Next an integer was created to store the variables of the receiver module. Even though the sensor over serial read 0-1, the actual numbers remained the same, from approximately 2-1020. With this in mind it was intelligible to state that if the variable value was greater than 1000 this means the circuit was active, if the value was below 1000 then it should be perceived as off. The on and off statements are was turns on the LED and the 0-1 is what was send to PD creating simple binary values. The whole process was delayed by 100ms each time to make the receiver responsive but not too sensitive.
+```
+void loop() {
+  Serial.println(analogRead(ldrPin)/1000); // Divide by 1000 to scale 0-1
+   int ldrValue = analogRead(ldrPin); // Store variable value
+   if (ldrValue > 1000) { // If value is greater than 1000
+   digitalWrite(LED1, HIGH // Turn LED on
+  } else {
+   digitalWrite(LED1, LOW); // Turn LED off
+  }
+  delay(100);
+}
+```
 
 ![Laser Sensor and Laser Receiver Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_038.jpeg)
