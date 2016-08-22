@@ -220,3 +220,11 @@ void loop() {
 ```
 
 ![Laser Sensor and Laser Receiver Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_038-1.jpeg)
+
+###### Second Prototypes
+
+**Multiple Ultrasonic Sensors**
+
+
+
+![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
