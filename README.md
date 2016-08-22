@@ -225,6 +225,100 @@ void loop() {
 
 **Multiple Ultrasonic Sensors**
 
+This prototype is a reworked version of the previous one, it allows multiple separate sensors to print their individual values over serial. With this sensor especially, this method allows for different trigger parameters to be specified so they can all react differently. Firstly the trigger and echo pins from the sensors have to be defined along with the LEDs, this sketch also needs a long command; long variables are extended size variables for number storage. Duration, distance and the sensor groups will be detailed later in the explanation.
+```
+#define trigPin1 A1  // defining first trigger pin, this pin will receive a short pulse in microseconds (µs) to begin ranging. Module sends out 8 cycle burst of ultrasound at 40kHz to raise  its echo. (Analogue pin 1).
+#define echoPin1 A0  // defining first echo pin, this pin will gauge distance in conjunction with the trigger pin.
+#define trigPin2 A2
+#define echoPin2 A3
+#define trigPin3 A4
+#define echoPin3 A5
+#define led1 10  //defining the first led. (Digital pin 10).
+#define led2 9
+#define led3 8
+#define led4 7
+#define led5 6
+#define led6 5
+    
+long duration, distance, FirstSensor, SecondSensor, ThirdSensor;
+```
+During the void setup the serial needs to be started on the chosen baud rate. Next the pins on the ultrasonic sensors and LEDs need specifying to state whether they are input or output pins.
+```
+void setup() {
+    Serial.begin (9600);  //starting serial on 9600 baud rate.
+    pinMode(trigPin1, OUTPUT); //stating how the trigger pin behaves.
+    pinMode(echoPin1, INPUT);  //stating how the echo pin behaves.
+    pinMode(trigPin2, OUTPUT);
+    pinMode(echoPin2, INPUT);
+    pinMode(trigPin3, OUTPUT);
+    pinMode(echoPin3, INPUT);
+    pinMode(led1, OUTPUT); //stating how the echo pin behaves.
+    pinMode(led2, OUTPUT);
+    pinMode(led3, OUTPUT);
+    pinMode(led4, OUTPUT);
+    pinMode(led5, OUTPUT);
+    pinMode(led6, OUTPUT);
+    }
+```
+The loop section on this multiple sensor prototype now works a little differently than before, for example each sensor is put into a group; in this case "SonarSensor" and has its integers sepcified. This is because, the generic sensor pins will used later in there own void declarations but will not be specific to any particular sensor. Instead they will state how the sensor should behave and thus it requires separate, additional declaration to make each sensor variable otherwise they would all behave the same. The individual sensors are then given names; for this example they are "FirstSensor", "SecondSensor" and "ThirdSensor". The module uses a combination of the unique pins and the generic calculation to understand how it should behave. The serial printing is divided into three separate numbers and waits 300ms before printing each time.
+```
+void loop() {
+    SonarSensor(trigPin1, echoPin1); //adding the SonarSensor into the loop, to be recalled later and with intergers specified to the corresponding pins and leds.
+    FirstSensor = distance; //sensors = distance, distance = echo pin return/2/29.1
+    SonarSensor(trigPin2, echoPin2);
+    SecondSensor = distance;
+    SonarSensor(trigPin3, echoPin3);
+    ThirdSensor = distance;
 
+    Serial.print(FirstSensor); //printing first sensor distance in cm to serial monitor.
+    Serial.print(" ");
+    Serial.print(SecondSensor);
+    Serial.print(" ");    
+    Serial.println(ThirdSensor); //end printing line so each stack will appear below after ever interval.
+    
+    delay(300); //print interval in ms. Recommended to use above 60ms to prevent trigger and echo signals becoming confused.
+    }
+```
+
+
+-calculation
+-else if
+```
+void SonarSensor(int trigPin, int echoPin) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH); 
+    delayMicroseconds(10); //supplying the trigger pin with short 10µs pulse.
+    digitalWrite(trigPin, LOW);
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration/2) / 29.1; //Distance = (Time x SpeedOfSound) /2. The "2" is because the sound has to travel back and forth. /29 because sound travels at approximately 340 meteres per second, which corresponds to about 29.412µs per cm. The easy way to read the formula: cm = ((µs/2)/29). If it takes 100µs for the ultrasonic sound to bounce back, then the distance is ((100/2)/29) or approximately 1.7cm.
+    
+  if (FirstSensor < 20) { 
+    digitalWrite(led1,HIGH);
+    digitalWrite(led2,LOW);
+  }
+  else if (FirstSensor > 20) {
+    digitalWrite(led1,LOW);
+    digitalWrite(led2,HIGH);
+  }
+  if (SecondSensor < 40) { 
+    digitalWrite(led3,HIGH);
+    digitalWrite(led4,LOW);
+  }
+  else if (SecondSensor > 40) {
+    digitalWrite(led3,LOW);
+    digitalWrite(led4,HIGH);
+  }
+  if (ThirdSensor < 80) { 
+    digitalWrite(led5,HIGH);
+    digitalWrite(led6,LOW);
+  }
+  else if (ThirdSensor > 80) {
+    digitalWrite(led5,LOW);
+    digitalWrite(led6,HIGH);
+  }
+}
+```
+-first multiple sensor sketch, so did take quite a lot of trial and error to get it working correctly.
 
 ![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
