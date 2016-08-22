@@ -279,7 +279,7 @@ void loop() {
     delay(300); //print interval in ms. Recommended to use above 60ms to prevent trigger and echo signals becoming confused.
     }
 ```
-
+How the SonarSensor group functions in the sketch now has to be delared; this is so that it can be recalled in the loop section. The void indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed HIGH for at least 10µs before waiting for the echo to return the signal.
 
 -calculation
 -else if
