@@ -30,7 +30,6 @@ VF - Forward Voltage
 Ω - Ohms
 ° - Degrees
 ```
-
 ## Background
 
 ## Prerequisites
@@ -40,7 +39,6 @@ VF - Forward Voltage
 The chosen board for this project is the Arduino Nano. The Nano is a small, powerful and breadboard-friendly board based on the ATmega328. The ATmega328 has 32KB of Flash memory. Having Flash memory and a microcontroller on the same chip means advantage can be taken of additional intelligence. For example there is an additional ROM (Read-only Memory) section holding the code for handling the Flash programming. The code does not only provide functions to erase or program the Flash memory, it also provides boot code. Even with a completely erased Flash, the chip can still execute this boot code and accept inputs via the serial port. The ROM is not erasable, therefore, applications can always rely on it being present. Also it contains 1KByte of EEPROM (Electrically Erasable Programmable Read-only Memory) which is user-modifiable read-only memory (ROM) that can be erased and reprogrammed repeatedly. Finally it has 2KBytes of RAM (Random-access Memory) is a form of computer data storage. A random-access memory device allows data items to be accessed (read or written) in almost the same amount of time irrespective of the physical location of data inside the memory. RAM is the place where the operating system, application programs and data in current use are kept so that they can be quickly reached by the processor.
 
 (Voltage, pins, uses)
-
 ```
 Microcontroller: ATmega328
 Operating Voltage (logic level): 5 V
@@ -52,13 +50,11 @@ DC Current per I/O Pin: 40 mA
 Flash Memory: 32 KB of which 2 KB used by bootloader
 Clock Speed: 16 MHz
 ```
-
 ![Arduino Nano ATmega328](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_007.jpeg)
 
 ## Sensors
 ###### Sensors Used
 **Ultrasonic Module HC-SR04 Distance Sensor**
-
 ```
 Working Voltage: 5V (DC)
 Sensor Angle: Up to 15°
@@ -69,59 +65,49 @@ The sensor uses ultrasonic sound to measure distance just like bats and dolphins
 ![Ultrasonic Module HC-SR04 Distance Sensor](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_010.jpeg)
 
 **Infrared Obstacle Avoidance Proximity Sensor Module FC-51**
-
 ```
 Working Voltage: 3.3V-6V (DC)
 Sensor Angle: 35°
 Detection Distance: 2cm-30cm
 ```
-
 The sensor is an IR (Infrared) transmitter and reciever and it consists of an LED that emits the IR radiation and a photo diode which acts as a receiver. The transmitter sends an IR radiation (in the infrared wavelength region), which is reflected off a surface and falls upon the receiver. Due to the light falling on the receiver, a potential difference is created across the ends. The potential difference is recognised by a microcontroller as HIGH or LOW.
 
 ![Infrared Obstacle Avoidance Proximity Sensor Module FC-51](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_013.jpeg)
 
 **Pyroelectric Infrared PIR Motion Sensor Detector Module HC-SR501**
-
 ```
 Working Voltage: 5V-20V (DC)
 Sensor Angle: 110°
 Detection Distance: Up to 7m
 ```
-
 PIR (Passive Infrared) sensors allow the detection of motion and are almost always used to detect if a human has moved in or out of the sensor's range. PIRs are essentially made of a pyroelectric sensor, which can detect levels of infrared radiation. Everything emits low level radiation and the hotter something is, the more radiation it emits. The sensor in a motion detector is actually split in two halves. The reason for that is that it is looking to detect motion, change, not average IR levels. The two halves are wired so that they cancel each other out. If one half sees more or less IR radiation than the other, the output will change to HIGH or LOW.
 
 ![Pyroelectric Infrared PIR Motion Sensor Detector Module HC-SR501](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_004.jpeg)
 
 **TTP223B Touch Sensing Module**
-
 ```
 Working Voltage: 2V-5.5V (DC)
 Sensor Detection: Operated via touch
 ```
-
 The sensor is based on a touch-sensing IC (TTP223B) capacitive touch switch module. The difference with this chip is that it has only one input instead of multiple. In its normal state, when there is no user input, the module output is LOW and in is a low power consumption mode. When touched, the module outputs a HIGH signal. If the module is not touched for 12 seconds, it switches back to the low power mode.
 
 ![TTP223B Touch Sensing Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_002.jpeg)
 
 **KY-008 650NM 5V Laser Sensor Module**
-
 ```
 Working Voltage: 5V (DC)
 Beam Output: 100mW
 Max Current: ~30mA (Laser on)
 ```
-
 The 100mW laser module emits a small intense focused beam of visible red light. Alone, this sensor would be useless to the project as it does not offer and type of input, it would require an external sensor to trigger it. However the interest in this module lies with a coupled receiver module that will allow the creatation of a small circuit which, in turn, will add another different way to affect the variables in the project.
 
 
 ![KY-008 650NM 5V Laser Sensor Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_017.jpeg)
 
 **Laser Receiver Transceiver LED Module**
-
 ```
 Working Voltage: 5V (DC)
 ```
-
 This module recognises when the laser beam is pointing at its sensor. The sensor in question is an LDR (light dependent resistor), the resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
 
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
@@ -172,8 +158,7 @@ The sensor is programmed to respond to touch, sending a HIGH signal when contact
 
 The first step in the process is to state where the sensor and LED are routed to on the Arduino.
 ```
-#define ctsPin 2 // This tells the Arduino to look for ctsPin (capacitive touch sensor) 
-                 // and replace it with 2 (digital pin 2)
+#define ctsPin 2 // This tells the Arduino to look for ctsPin (capacitive touch sensor) and replace it with 2 (digital pin 2)
 int LED1 = 10 // This adds the first LED as an integer on digital pin 10
 ```
 The reason define is used for the sensor and int is used for the LED is because the #define function acts as a search an replace setting and int is a variable. Whenever the compiler reads "ctsPin" it now believes it saw "2". It can't be changed while the sketch is running however, it takes no memory in the processor. Meanwhile the int function is a variable and does take a small amount of memory, 2 bytes to be precise, to store the value and takes an extra bit of memory to store the original value. This, however, allows the sketch to modify the variable under any desired circumstance and use the altered value from that point on.
@@ -181,15 +166,15 @@ The reason define is used for the sensor and int is used for the LED is because 
 The sketch then requires the serial to started on the chosen baud rate and the pinModes to be specified in the void setup. The serial is set to begin on baud rate 9600, the ctsPin is set as an input and the LED is chosen as the output. The void loop is where the the previously mentioned variable between the send and receive pin is detailed. The variable value is stated as the condition of the touch sensor. The code for the loop would look similar to this.
 ```
 void loop() {
-  int ctsValue = digitalRead(ctsPin); // Variable is condition of sensor
-  if (ctsValue == HIGH){ // If sensor is touched...
-    digitalWrite(LED1, HIGH); //  Turn LED on
-    Serial.println("1"); // Then print the number 1 to the serial
-  }
-  else{ // Otherwise, if it is not touched...
-    digitalWrite(LED,LOW); //  Turn LED off
-    Serial.println("0"); Then print the number 0 to the serial
-  } 
+ int ctsValue = digitalRead(ctsPin); // Variable is condition of sensor
+ if (ctsValue == HIGH){ // If sensor is touched...
+  digitalWrite(LED1, HIGH); //  Turn LED on
+  Serial.println("1"); // Then print the number 1 to the serial
+}
+ else{ // Otherwise, if it is not touched...
+  digitalWrite(LED,LOW); //  Turn LED off
+  Serial.println("0"); Then print the number 0 to the serial
+} 
   delay(100); // Delay the steps in this process by 100ms
 ```
 There are a few known issues with capacitive sensors; especially when it comes to using them near or with a laptop. The grounding of the Arduino board is very important in capacitive sensing and it is imperative the board has some ground connection. A main problem that seems to materialise is with laptops not being connected to the mains power via the charging cable. The laptop itself tends to become sensitive and bringing a hand near the laptop will change the returned values. Connecting the charging cable to the laptop usually resolves the problem.
@@ -204,19 +189,19 @@ The way this circuit was designed to work, was by the laser beaming its output i
 void loop() {
   Serial.println(analogRead(ldrPin)); // This prints the output over serial
   delay(100); // Delays the process by 100ms each time
-  }
+}
 ```
 The output of the sensor ranged from 2-20 when the laser was removed and between 1010-1019 when the laser was shone onto the receiver. With this in mind it was fairly simple to decide how best to programme the circuit for both being efficient in the sketch and producing usable results in PD. An LED was again used as a visual aid, using a 150Ω resistor as in the previous prototypes. For PD, the output was scaled between 0 and 1. This was accomplished by dividing the output of the receiver by 1000. Next an integer was created to store the variables of the receiver module. Even though the sensor over serial read 0-1, the actual numbers remained the same, from approximately 2-1020. With this in mind it was intelligible to state that if the variable value was greater than 1000 this means the circuit was active, if the value was below 1000 then it should be perceived as off. The on and off statements are was turns on the LED and the 0-1 is what was send to PD creating simple binary values. The whole process was delayed by 100ms each time to make the receiver responsive but not too sensitive.
 ```
 void loop() {
-  Serial.println(analogRead(ldrPin)/1000); // Divide by 1000 to scale 0-1
-   int ldrValue = analogRead(ldrPin); // Store variable value
-   if (ldrValue > 1000) { // If value is greater than 1000
+ Serial.println(analogRead(ldrPin)/1000); // Divide by 1000 to scale 0-1
+  int ldrValue = analogRead(ldrPin); // Store variable value
+  if (ldrValue > 1000) { // If value is greater than 1000
    digitalWrite(LED1, HIGH // Turn LED on
-  } else {
+} else {
    digitalWrite(LED1, LOW); // Turn LED off
-  }
-  delay(100);
+}
+   delay(100);
 }
 ```
 
@@ -259,7 +244,7 @@ void setup() {
     pinMode(led4, OUTPUT);
     pinMode(led5, OUTPUT);
     pinMode(led6, OUTPUT);
-    }
+}
 ```
 The loop section on this multiple sensor prototype now works a little differently than before, for example each sensor is put into a group; in this case "SonarSensor" and has its integers sepcified. This is because, the generic sensor pins will used later in there own void declarations but will not be specific to any particular sensor. Instead they will state how the sensor should behave and thus it requires separate, additional declaration to make each sensor variable otherwise they would all behave the same. The individual sensors are then given names; for this example they are "FirstSensor", "SecondSensor" and "ThirdSensor". The module uses a combination of the unique pins and the generic calculation to understand how it should behave. The serial printing is divided into three separate numbers and waits 300ms before printing each time.
 ```
@@ -278,7 +263,7 @@ void loop() {
     Serial.println(ThirdSensor); //end printing line so each stack will appear below after ever interval.
     
     delay(300); //print interval in ms. Recommended to use above 60ms to prevent trigger and echo signals becoming confused.
-    }
+}
 ```
 How the SonarSensor group functions in the sketch now has to be delared; this is so that it can be recalled in the loop section. The "void" indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed HIGH for at least 10µs before waiting for the echo to return the signal. So it sets to LOW, pulses HIGH then goes LOW. When the echo pin receives a HIGH return pulse, the time that elapses equals the duration. The distance uses the duration in the calculation as seen below. Now, because the sensors have been grouped and are ready to be recalled in the loop section, their behaviour can now be written here. If the first sensor encounters an obstacle that is closer than 20cm it turns LED1 on and LED2 off. If the obstacle is further than 20cm the reverse happens. Because the LED used is a bi-colour green and red LED, both times it is impacting the same one.
 ```
