@@ -6,6 +6,7 @@ A sound installation that responds to stimuli and continuously evolves via user 
 cm - centimeters
 DC - Direct Current
 EEPROM - Electrically Erasable Programmable Read-only Memory
+HCI - Human-Computer Interaction
 Hz - Hertz
 IC - Intergrated Circuit
 IDE - Integrated Development Environment
