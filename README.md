@@ -308,10 +308,109 @@ The other two sensors are programmed the same way. As this was the first attempt
 
 **Multiple IR Sensors**
 
-This prototype is a modified version of the single IR sensor model, it allows for multiple individual sensors to print their values over serial. One problem with the IR sensor is that it outputs a LOW signal (0) when an obstacle is present and a HIGH signal (1) when there is no obstruction. This is the opposite of what is needed for the PD patch, this is because the system is designed to read 1 as on and 0 as off so this sensor is backwards. However, there is an easy solution to this problem. 
+This prototype is a modified version of the single IR sensor model, it allows for multiple individual sensors to print their values over serial. One problem with the IR sensor is that it outputs a LOW signal (0) when an obstacle is present and a HIGH signal (1) when there is no obstruction. This is the opposite of what is needed for the PD patch, this is because the system is designed to read 1 as on and 0 as off so this sensor is backwards. However, there is an easy solution to this problem. Rather than trying to reverse the polarity on the sensor to switch the output the change will happen inside PD, when the 0 and 1 signals are send to PD they will be received into route objects. From here 0 will be send to trigger a 1 and vice versa. This approach is far simpler than the alternative option which is to swap the polarity.
 
-- need to switch output in PD, when obstacle is detected the IR sensors output a LOW signal!
+The first operation that needs addressing is the declaration of the integers, for this all 5 LEDs and sensors need to be connected to their respective digital or analogue pins and the variable for the sensor needs to be specified. As this is again a multiple sensor sketch a long command is needed for number storage.
+```
+int led1 = 12; // First LED on digital pin 12
+int led2 = 11;
+int led3 = 10;
+int led4 = 9;
+int led5 = 8;
+int obstaclePin1 = A0;  // First IR sensor on analogue pin 0
+int obstaclePin2 = A1;
+int obstaclePin3 = A2;
+int obstaclePin4 = A3;
+int obstaclePin5 = A4;
+int obstacle = LOW;  // LOW MEANS NO OBSTACLE
 
+
+long FirstSensor, SecondSensor, ThirdSensor, FourthSensor, FifthSensor;
+```
+In the setup section the serial is started on a baud rate of 9600, this is also the baud rate that PD uses by default for its serial communications. The pin modes are specified on whether they are to act as an input or output.
+```
+void setup() {
+  Serial.begin(9600);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(obstaclePin1, INPUT);
+  pinMode(obstaclePin2, INPUT);
+  pinMode(obstaclePin3, INPUT);
+  pinMode(obstaclePin4, INPUT);
+  pinMode(obstaclePin5, INPUT);
+}
+```
+The loop section is almost identical to the loop section of the ultrasonic sensor the only difference is being that there are five sensors instead of three.
+```
+void loop() {
+  ObstacleSensor(obstaclePin1);
+  FirstSensor = obstacle;
+  ObstacleSensor(obstaclePin2);
+  SecondSensor = obstacle;
+  ObstacleSensor(obstaclePin3);
+  ThirdSensor = obstacle;
+  ObstacleSensor(obstaclePin4);
+  FourthSensor = obstacle;
+  ObstacleSensor(obstaclePin5);
+  FifthSensor = obstacle;
+
+  Serial.print(FirstSensor);
+  Serial.print(" ");
+  Serial.print(SecondSensor);
+  Serial.print(" ");
+  Serial.print(ThirdSensor);
+  Serial.print(" ");
+  Serial.print(FourthSensor);
+  Serial.print(" ");
+  Serial.println(FifthSensor);
+
+  delay(200);
+}
+```
+Because the above groups are derived from a global variable it has to have its own function declaration so it can be recalled separately by the sensors. Because the sensor does not recognise distance and only obstacles, it is simple to create a variable. The variable value is relative to the status of the input pin. So if there is no obstruction, the sensor is HIGH and the LED will not light up. However, if the sensor is obstructed then the signal is LOW causing the LED to illuminate. Unlike the ultrasonic function declaration there is no greater or less than, only equal to as the signal is either HIGH or LOW due to it acting solely as a trigger and not a range finder. 
+```
+void ObstacleSensor(int obstaclePin) {
+  obstacle = digitalRead(obstaclePin);
+  
+  if (FirstSensor == HIGH) {
+    digitalWrite(led1, LOW);
+  }
+  else if (FirstSensor == LOW) {
+    digitalWrite(led1, HIGH);
+  }
+    if (SecondSensor == HIGH) {
+    digitalWrite(led2, LOW);
+  }
+  else if (SecondSensor == LOW) {
+    digitalWrite(led2, HIGH);
+  }
+  if (ThirdSensor == HIGH) {
+    digitalWrite(led3, LOW);
+  }
+  else if (ThirdSensor == LOW) {
+    digitalWrite(led3, HIGH);
+  }
+    if (FourthSensor == HIGH) {
+    digitalWrite(led4, LOW);
+  }
+  else if (FourthSensor == LOW) {
+    digitalWrite(led4, HIGH);
+  }
+      if (FifthSensor == HIGH) {
+    digitalWrite(led5, LOW);
+  }
+  else if (FifthSensor == LOW) {
+    digitalWrite(led5, HIGH);
+  }
+}
+```
 ![IR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_036.jpeg)
 
-- PIR: could not have multiple as serial gets paused!
+**Multiple PIR Sensors**
+
+Unfortunately, when it came to trying to add multiple PIR sensors on one Arduino board it did not work. This is due to the way the sensors were programmed to behave. They work fine if used exclusively as trigger modules but it is the pause function that causes the problem. Due to the serial printing having to pause when motion is detected it cannot print the output from the alternative sensor. No logical way around this could be found.
+
+![PIR Second Prototype]()
