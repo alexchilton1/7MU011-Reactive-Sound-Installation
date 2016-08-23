@@ -308,6 +308,10 @@ The other two sensors are programmed the same way. As this was the first attempt
 
 **Multiple IR Sensors**
 
+This prototype is a modified version of the single IR sensor model, it allows for multiple individual sensors to print their values over serial. One problem with the IR sensor is that it outputs a LOW signal (0) when an obstacle is present and a HIGH signal (1) when there is no obstruction. This is the opposite of what is needed for the PD patch, this is because the system is designed to read 1 as on and 0 as off so this sensor is backwards. However, there is an easy solution to this problem. 
 
+- need to switch output in PD, when obstacle is detected the IR sensors output a LOW signal!
 
 ![IR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_036.jpeg)
+
+- PIR: could not have multiple as serial gets paused!
