@@ -370,7 +370,7 @@ void loop() {
   delay(200);
 }
 ```
-Because the above groups are derived from a global variable it has to have its own function declaration so it can be recalled separately by the sensors. Because the sensor does not recognise distance and only obstacles, it is simple to create a variable. The variable value is relative to the status of the input pin. So if there is no obstruction, the sensor is HIGH and the LED will not light up. However, if the sensor is obstructed then the signal is LOW causing the LED to illuminate. Unlike the ultrasonic function declaration there is no greater or less than, only equal to as the signal is either HIGH or LOW due to it acting solely as a trigger and not a range finder. 
+Because the above groups are derived from a global variable it has to have its own function declaration so it can be recalled separately by the sensors. Because the sensor does not recognise distance and only obstacles, it is simple to create a variable. The variable value is relative to the status of the input pin. So if there is no obstruction, the sensor is HIGH and the LED will not light up. However, if the sensor is obstructed then the signal is LOW causing the LED to illuminate. Unlike the ultrasonic function declaration there is no greater or less than, only equal to, as the signal is either HIGH or LOW due to it acting solely as a trigger and not a range finder. 
 ```
 void ObstacleSensor(int obstaclePin) {
   obstacle = digitalRead(obstaclePin);
