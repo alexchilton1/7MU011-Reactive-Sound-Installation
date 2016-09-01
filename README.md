@@ -27,6 +27,7 @@ RAM - Random Access Memory
 ROM - Read-only Memory
 V - Volts
 VF - Forward Voltage
+MΩ - Megaohm
 Ω - Ohms
 ° - Degrees
 ```
@@ -111,6 +112,24 @@ Working Voltage: 5V (DC)
 This module recognises when the laser beam is pointing at its sensor. The sensor in question is an LDR (light dependent resistor), the resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
 
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
+
+**KY-018 Photo Resistor Module**
+```
+Working Voltage: 5V (DC)
+```
+Photo resistors, also known as light dependent resistors, are light sensitive devices commonly used to indicate the presence or absence of light, or to measure its intensity. When no light source is present, their resistance is very high, ranging up to 1MΩ. However, if the LDR is exposed to light, the resistance drop dramatically depending on the intensity of the light source. LDR sensors have a sensitivity that varies with the wavelength of the light applied and are nonlinear devices.
+
+![KY-018 Photo Resistor Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039.jpeg)
+
+**Analogue Joystick Controller**
+```
+Working Voltage: 5V (DC)
+Axis: Duel (X/Y)
+Push Button: Yes
+```
+This module is a combination of two potentiometers that allow simultaneous movement along the X and Y axis. Potentiometers are variable resistors and by connecting the potentiometer as a voltage divider, a varying voltage can be output by the device. This data can be sent to the arduino via one of the analogue pins and read to track the movement and position of the joystick. This joystick contains two potentiometers, connected with a gymbal mechanism that separates the "horizontal" and "vertical" movements. The two potentiometers only pick up movement in one direction, this allows the two to be combined to create a single module capable of mapping fully across the X and Y axis. The joystick contains an additional feature; a switch, that sends a signal when the cap is pushed down. The switch is the small black box on the rear of the joystick. The lever works no matter what position the joystick is in.
+
+![Analogue Joystick Controller]()
 
 ## Prototypes
 
