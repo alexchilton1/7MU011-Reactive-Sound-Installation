@@ -34,15 +34,27 @@ VF - Forward Voltage
 
 ## Prerequisites
 
-## Build Structure (Plan)
+## Build Structure Overview (Initial plan of the stages in the project)
 ###### Sensors
+The first plan of action is to read the data sheets for all of the sensors, this will provide an insight into how the sensors can be programmed, what the various pins do and what they can be used to control. After doing this basic prototypes will need to be created for each sensor to determine if the theoretical information corresponds to their behaviour in a physical space.
+
 ###### Multiple Sensors
+Once the initial prototypes have been created, a second iteration of the prototyping stage will ensue. This time combining sensors to make sure they are able to interact will other sensors without any problems.
+
 ###### Pure Data Patch
+Construction will now be able to begin on the audio section of the installation. After working with the sensors and understanding how they operate individually and as small groups the audio section can be designed with their behaviour in mind. When creating the patch, with the chosen audio generation techniques, thinking about how the different audio sections will interact with the chosen sensors will help define a scope for the layout. The first few audio techniques to implement will be an ambient drone section and an audio sample playback section.
+
 ###### Mapping Sensors
-###### Pure Data Additional Features
-###### Design Installation Structure
-###### Build Installation
+After the first two audio elements have been created and are functioning as intended, an initial test can be carried out by mapping one or two of the sensors to the audio components; making sure that they actually work together as intended. This is because is it much easier to make changes near to the start, trying to make a lot chnages when the product has been completed is a very difficult and time-consuming task.
+
+###### Pure Data Additional Features and More Mapping
+The rest of the audio generation elements can be added at this stage, these include; a white noise generator, a spectral bank, some phase distortion synthesis and a reverberation unit. After these features have been built, every element sound be connected to the various prototypes to make sure they all work as intended before it progresses to the soldering stage.
+
+###### Design and Build the Installation Structure
+At this point, all of the sensors should have be programmed and the audio components should have been built, so the design process should begin to decide how the installation is going to look. This needs to incorporate a logical system of interaction with the sensors so they do not suffer from crosstalk and so that the user can physically interact with them without restriction. Once the structure has been designed it will need to be built. Regardless of the appearance of the final design, it will all be made from wood.
+
 ###### Connect and Test
+The final stage will be connect the finished installation to the audio patch and confirm that everything works as intended.
 
 ## Arduino
 
