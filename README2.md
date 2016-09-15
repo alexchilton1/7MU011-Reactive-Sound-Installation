@@ -34,11 +34,20 @@ VF - Forward Voltage
 
 ## Prerequisites
 
+## Build Structure (Plan)
+###### Sensors
+###### Multiple Sensors
+###### Pure Data Patch
+###### Mapping Sensors
+###### Pure Data Additional Features
+###### Design Installation Structure
+###### Build Installation
+###### Connect and Test
+
 ## Arduino
 
-The microcontroller used in this project is the Arduino Nano. The Nano is a small, powerful and breadboard-friendly board based on the ATmega328. The ATmega328 has 32KB of Flash memory. Having Flash memory and a microcontroller on the same chip means advantage can be taken of additional intelligence (be wary of this statement, all/nearly all microcontrollers do, also avoid the word intelligence). For example there is an additional ROM (Read-only Memory) section that holds the code for handling the Flash programming (rephrase). The code does not only provide functions to erase or program the Flash memory, it also provides boot code. Even with a completely erased Flash, the chip can still execute this boot code and accept inputs via the serial port. The ROM is not erasable, therefore, applications can always rely on it being present. Also it (rephrase sentence start) contains 1KByte of EEPROM (Electrically Erasable Programmable Read-only Memory) which is user-modifiable read-only memory (ROM) that can be erased and reprogrammed repeatedly. Finally it has 2KBytes of RAM (Random-access Memory) is a form of computer data storage. A random-access memory device allows data items to be accessed (read or written) in almost the same amount of time irrespective of the physical location of data inside the memory. RAM is the place where the operating system, application programs and data in current use are kept so that they can be quickly reached by the processor.
+The microcontroller used in this project is the Arduino Nano. The Nano is a small, powerful and breadboard-friendly board based on the ATmega328. The ATmega328 has 32KB of Flash memory. There is an additional ROM section that handles the code for programming the Flash memory. This code not only provides functions to erase or program the Flash memory, it also provides boot code. Even with a completely erased Flash, the chip can still execute this boot code and accept inputs via the serial port. The ROM is not erasable, therefore, applications can always rely on it being present. As well as this, it contains 1KByte of EEPROM which is user-modifiable read-only memory  that can be erased and reprogrammed repeatedly. Finally it has 2KBytes of RAM is a form of computer data storage. A random-access memory device allows data items to be accessed (read or written) in almost the same amount of time irrespective of the physical location of data inside the memory. RAM is the place where the operating system, application programs and data in current use are kept so that they can be quickly reached by the processor. This particular model contains 8 analogue input pins, which provide the ability to read analogue sensor values and return integers from 0 to 1023. It also contains 13 digital pins, these can be configured to behave as either inputs or outputs. However, the pins default to inputs, so they do not need to be explicitly delcared as inputs with the pinMode command when using them in this manner.
 
-(Voltage, pins, uses)
 ```
 Microcontroller: ATmega328
 Operating Voltage (logic level): 5 V
@@ -111,6 +120,20 @@ Working Voltage: 5V (DC)
 This module recognises when the laser beam is pointing at its sensor. The sensor in question is a light dependent resistor (LDR). The resistance of an LDR decreases with increasing incident light intensity. When the light level is low the resistance of the LDR is HIGH. However, when the light shines onto the LDR, its resistance lowers and the outputing signal would be LOW. This sensor combined with the laser module is used to create a trip sensor. As a person passes through the beam it cuts off the light source to the LDR, therefore, switching its output to HIGH, allowing the circuit to affect the chosen variable(s) within the Pure Data patch.
 
 ![Laser Receiver Transceiver LED Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_019.jpeg)
+
+**Light Dependent Resistor Module**
+```
+Working Voltage: 3.3V-5V (DC)
+```
+Similar to the laser receiver transceiver module this module uses an LDR to detect the light level. When the light level is low, the resistance of the LDR is high. However, when a light source shines onto the LDR its resistance falls. This module will require an analogue input on the Arduino, which means that the analogueRead command will need to be employed. This means the value will not be 0 to 1, but instead it will output a variable value so if it to behave as a switch or toggle the code will have to specify what value makes the LDR module affect the parameter it is controlling. For example, if the LDR value is less 100, do not let turn off LED, however, if the value is greater than 100 turn on the LED.
+
+![Light Dependent Resistor Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039.jpeg)
+
+**Analogue Joystick Module**
+```
+```
+
+![Analogue Joystick Module]()
 
 ## Prototypes
 
