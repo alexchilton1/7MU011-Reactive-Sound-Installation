@@ -45,7 +45,7 @@ Once the initial prototypes have been created, a second iteration of the prototy
 Construction will now be able to begin on the audio section of the installation. After working with the sensors and understanding how they operate individually and as small groups the audio section can be designed with their behaviour in mind. When creating the patch, with the chosen audio generation techniques, thinking about how the different audio sections will interact with the chosen sensors will help define a scope for the layout. The first few audio techniques to implement will be an ambient drone section and an audio sample playback section.
 
 ###### Mapping the Sensors
-After the first two audio elements have been created and are functioning as intended, an initial test can be carried out by mapping one or two of the sensors to the audio components; making sure that they actually work together as intended. This is because is it much easier to make changes near to the start, trying to make a lot chnages when the product has been completed is a very difficult and time-consuming task.
+After the first two audio elements have been created and are functioning as intended, an initial test can be carried out by mapping one or two of the sensors to the audio components; making sure that they actually work together as intended. This is because is it much easier to make changes near to the start, trying to make a lot of changes when the product has been completed is a very difficult and time-consuming task.
 
 ###### Pure Data Additional Features
 The rest of the audio generation elements can be added at this stage, these include; a white noise generator, a spectral bank, some phase distortion synthesis and a reverberation unit. After these features have been built, every element sound be connected to the various prototypes to make sure they all work as intended before it progresses to the soldering stage.
@@ -447,6 +447,18 @@ void JoySensor(int joyPin) {
   joyValue = analogRead(joyPin);
 }
 ```
-Once this is complete, everything is set up and ready.
+Once this was complete, everything was set up and ready to use.
 
 ![Multiple Sensor Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_040.jpeg)
+
+## Pure Data Patch Initial Build
+
+## Sensor Mapping Test
+
+## Finalising the Pure Data Patch 
+
+## Designing the Installation Structure
+The initial idea for layout of the sound installation was to set up small groups of sensors in multiple places within a small space at the chosen loaction, which is a cemetery. However, due to there being no power and not many places to suspend sensors it was decided that the installation would be an all-in-one style scaled down version. With this in mind, a few sketches were created of how the design might look. These designs incorporated considerations such as cost, accessibility, usability and mobility. It was important to create a product that could be moved easily without having to dismantle the entire array, that was inexpensive and that could be accessed easily by the audience.
+
+![First sketches](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_042-3.jpeg)
+
