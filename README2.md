@@ -247,7 +247,13 @@ void loop() {
 
 ![Laser Sensor and Laser Receiver Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_038-1.jpeg)
 
-###### Second Prototypes
+Unfortunately, shortly after writing this the receiver module broke. It is presumed that this is due to its cheapness. The module only cost a few pounds and was apparently not very robust or well made. The reciever module was switched out for a LDR module instead.
+
+**Laser Sensor and LDR Module**
+
+![Laser Sensor and LDR Module First Prototype]()
+
+###### Second Prototypes 
 
 **Multiple Ultrasonic Sensors**
 
