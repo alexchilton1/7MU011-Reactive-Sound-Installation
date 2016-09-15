@@ -74,7 +74,7 @@ Clock Speed: 16 MHz
 ![Arduino Nano ATmega328](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_007.jpeg)
 
 ## Sensors
-#### Sensors Used
+### Sensors Used
 **Ultrasonic Module HC-SR04 Distance Sensor**
 ```
 Working Voltage: 5V (DC)
@@ -261,7 +261,7 @@ This prototype was used to test the different values the controller was capable 
 
 ![Analogue Joystick First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039-3.jpeg)
 
-#### Second Prototypes 
+### Second Prototypes 
 
 **Multiple Ultrasonic Sensors**
 
