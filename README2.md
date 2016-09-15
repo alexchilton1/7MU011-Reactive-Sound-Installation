@@ -250,11 +250,13 @@ void loop() {
 Unfortunately, shortly after writing this the receiver module broke. It is presumed that this is due to its cheapness. The module only cost a few pounds and was apparently not very robust or well made. The reciever module was switched out for a LDR module instead.
 
 **Laser Sensor and LDR Module**
+
 This module works exactly the same as the laser receiver module as they are essentially the same sensor, they differ only in the range of values that are output. The LDR module, when the laser is pointing at the module, outputs a value of approximately 24 and when the laser beam is block by an obstacle the value raises to around 190. In the prototype, the LDR module acted as a switch; if the value was less than 100 then an LED was turned off and if the value was greater than 100 the LED was turned on.
 
 ![Laser Sensor and LDR Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_033-1.jpeg)
 
 **Analogue Joystick Controller**
+
 This prototype was used to test the different values the controller was capable of outputting and then using the results to determine if there was a relevant place for it in the installation. The controller required only a few simple set of instructions to become operatational. The first was defining the two potentiometers, into analogue pins 0 and 1 and the switch pin. The pinMode for the switch was set to input and the pull-up resistors on the Arduino were enabled. The positions of the two potentiometers were set to print to the serial monitor, their values ranging from 0 to 1023. The switch is a push button set to print a 0 when untouched and a 1 when pressed. Its place in project is still undecided as of now.
 
 ![Analogue Joystick First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039-3.jpeg)
