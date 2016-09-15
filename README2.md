@@ -156,7 +156,7 @@ The analogue joytsick controller has three outputs; two analogue 10K potentiomet
 
 ### First Prototypes
 
-After the datasheets for the modules had been collected and studied it was time to start progamming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The way it has to be wired along with its capability are the framework in deciding how it must be programmed.
+After the datasheets for the modules had been collected and studied, it was time to start progamming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The way it has to be wired along with its capability are the framework in deciding how it must be programmed.
 
 **Ultrasonic Sensor**
 
@@ -361,6 +361,7 @@ The other two sensors are programmed the same way. As this was the first attempt
 ![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
 
 **Multiple IR Sensors**
+
 This prototype is again a reworked version of the previous one. It allows multiple separate sensors to print their individual values over serial. Unlike the ultrasonic sensor, the range does not need to be specified in the code as it uses an onboard potentiometer altered by a screwdriver. The integers are specified so that the individual sensors can write their data to the serial monitor separately. The five sensors are split into five groups, all using the same variable; obstacle.
 ```
 void ObstacleSensor(int obstaclePin)
@@ -380,11 +381,72 @@ The sensors will print their values over serial, depending on if an obstacle is 
 ![IR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_036.jpeg)
 
 **Multiple PIR Sensors**
+
 The first PIR sensor is acting as a motion sensing toggle for the ambient tone generator, the idea was to add a second sensor and use it in a similar way. Unfortunately, due to the way the print function works, when one PIR sensor detects motion and prints its value, the other sensor loses its ability to print over serial. Both sensors could be made to work at the same time, but their values continuously printed to the serial monitor and this was not the desired effect. Because of this, the decision was made to use only one PIR sensor as originally intended.
 
 ![PIR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_037-1.jpeg)
 
 **Multiple Sensor Prototype**
-This prototype contains five different sensor; a touch capacitive sensor, an ultrasonic range finder, an analogue joystick, a laser sensor module and an LDR module. The idea behind this was to put all of the leftover sensors on their own Arduino board, mostly because the PIR has to remain on its own, there were already five IR sensors on one board and obviously, the more sensors on a board the slower each subsquent sensor will respond and the more power they will draw.
+
+This prototype contains five different sensor; a touch capacitive sensor, an ultrasonic range finder, an analogue joystick, a laser sensor module and an LDR module. The idea behind this was to put all of the leftover sensors on their own Arduino board, mostly because the PIR has to remain on its own, there were already five IR sensors on one board and obviously, the more sensors on a board the slower each subsquent sensor will respond and the more power they will draw. By this point, programming this collection of sensors was fairly straight forward. As usual, it starts by defining the integers and specifying the long values.
+```
+#define trigPin1 A1  //defining first trigger pin, this pin will receive a short pulse in microseconds (µs) to begin ranging. Module sends out 8 cycle burst of ultrasound at 40kHz to raise  its echo. (Analogue pin 1).
+#define echoPin1 A0  //defining first echo pin, this pin will gauge distance in conjunction with the trigger pin.
+#define led1 10  //defining the first led. (Digital pin 10).
+#define led2 9
+#define led3 8
+#define led4 7
+#define ctsPin1 2  //defining the touch sensor.
+#define psrPin1 A2  //defining the LDR module.
+#define joyPin1 A3  //defining the x-axis
+#define joyPin2 A4  //defining the y-axis
+
+long duration, distance, ctsValue, psrValue, joyValue, FirstSensor, SecondSensor, ThirdSensor, FourthSensor, FifthSensor;
+```
+From here, a simple case of starting the serial monitor and specifying the pinModes from the sensors. In the loop, stating what the different groups do and making sure they print and at what interval. Finally its a case of stating what the each group actually does.
+```
+void SonarSensor(int trigPin, int echoPin) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH); 
+    delayMicroseconds(10); //supplying the trigger pin with short 10µs pulse.
+    digitalWrite(trigPin, LOW);
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration/2) / 29.1; //Distance = (Time x SpeedOfSound) /2. The "2" is because the sound has to travel back and forth. /29 because sound travels at approximately 340 meteres per second, which corresponds to about 29.412µs per cm. The easy way to read the formula: cm = ((µs/2)/29). If it takes 100µs for the ultrasonic sound to bounce back, then the distance is ((100/2)/29) or approximately 1.7cm.
+    if (FirstSensor < 63) { 
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+  }
+  else if (FirstSensor > 63) {
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, HIGH);
+  }
+
+}
+
+void TouchSensor(int ctsPin) {
+  ctsValue = digitalRead(ctsPin);
+  if (ctsValue == HIGH) {
+    digitalWrite(led3, HIGH);
+  }
+  else {
+    digitalWrite(led3, LOW);
+  }
+}
+
+void LaserSensor(int psrPin) {
+  psrValue = (analogRead(psrPin));
+  if (psrValue > 100) {
+    digitalWrite(led4, HIGH);
+  } else {
+    digitalWrite(led4, LOW);
+  }
+}
+
+void JoySensor(int joyPin) {
+  joyValue = analogRead(joyPin);
+}
+```
+Once this is complete, everything is set up and ready.
 
 ![Multiple Sensor Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_040.jpeg)
