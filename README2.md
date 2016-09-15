@@ -154,7 +154,7 @@ The analogue joytsick controller has three outputs; two analogue 10K potentiomet
 
 ## Prototypes
 
-###### First Prototypes
+### First Prototypes
 
 After the datasheets for the modules had been collected and studied it was time to start progamming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The way it has to be wired along with its capability are the framework in deciding how it must be programmed.
 
