@@ -1,5 +1,5 @@
 # 7MU011-Reactive-Sound-Installation
-The project is a sound installation that responds to stimuli and continuously evolves via user input. User input is made possible through the use of a range of different sensors, interfaced with a computer via several Arduino microcontrollers. The software element of this project was built using two main platforms; each sensor had its behaviour scripted using the Arduino's IDE (Intergrated Development Environment), and the audio section of this installation was built in Pure Data.
+This project is a sound installation that responds to stimuli and continuously evolves via user input. User input is made possible through the use of a range of different sensors, interfaced with a computer via several Arduino microcontrollers. The software element of this project was built using two main platforms; each sensor had its behaviour scripted using the Arduino's IDE (Intergrated Development Environment), and the audio section of this installation was built in Pure Data.
 
 ## Acronyms/Abbreviations/Symbols
 ```
@@ -250,8 +250,9 @@ void loop() {
 Unfortunately, shortly after writing this the receiver module broke. It is presumed that this is due to its cheapness. The module only cost a few pounds and was apparently not very robust or well made. The reciever module was switched out for a LDR module instead.
 
 **Laser Sensor and LDR Module**
+This module works exactly the same as the laser receiver module as they are essentially the same sensor, they differ only in the range of values that are output. The LDR module, when the laser is pointing at the module, outputs a value of approximately 24 and when the laser beam is block by an obstacle the value raises to around 190. In the prototype, the LDR module acted as a switch; if the value was less than 100 then an LED was turned off and if the value was greater than 100 the LED was turned on.
 
-![Laser Sensor and LDR Module First Prototype]()
+![Laser Sensor and LDR Module First Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_033-1.jpeg)
 
 ###### Second Prototypes 
 
@@ -353,7 +354,25 @@ The other two sensors are programmed the same way. As this was the first attempt
 ![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
 
 **Multiple IR Sensors**
-
-
+This prototype is again a reworked version of the previous one. It allows multiple separate sensors to print their individual values over serial. Unlike the ultrasonic sensor, the range does not need to be specified in the code as it uses an onboard potentiometer altered by a screwdriver. The integers are specified so that the individual sensors can write their data to the serial monitor separately. The five sensors are split into five groups, all using the same variable; obstacle.
+```
+void ObstacleSensor(int obstaclePin)
+  {
+  obstacle = digitalRead(obstaclePin); //etc, only a fraction of the void declaration
+```
+As the variable equals the state of the obstaclePin, each sensor is given its own unique pin value.
+```
+void loop() {
+  ObstacleSensor(obstaclePin1);
+  FirstSensor = obstacle;
+  ObstacleSensor(obstaclePin2);
+  SecondSensor = obstacle; //this continues up to the fifth sensor
+```
+The sensors will print their values over serial, depending on if an obstacle is detected they will either print a 0 or a 1. Also in this prototype if an obstacle is detected an LED for the corresponding sensor turns on. In the final design these LEDs may be scrapped due to the IR sensors having internal LEDs.
 
 ![IR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_036.jpeg)
+
+**Multiple PIR Sensors**
+
+
+![PIR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_037-1.jpeg)
