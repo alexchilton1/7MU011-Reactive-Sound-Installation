@@ -129,11 +129,16 @@ Similar to the laser receiver transceiver module this module uses an LDR to dete
 
 ![Light Dependent Resistor Module](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039.jpeg)
 
-**Analogue Joystick Module**
+**Analogue Joystick Controller**
 ```
+Working Voltage: 5V (DC)
+Potentiometers: 2
+Push Buttons: 1
+Axis: X/Y
 ```
+The analogue joytsick controller has three outputs; two analogue 10K potentiometers that represent the X/Y axis and one switch contact output representing the push button on the joystick. However, the switch has no pull-up resistor so the internal pull-up from the Arduino is required. The two potentiometers provide the ability to measure the movement of the stick across a two-dimensional plane. These potentiometers are variable resistors and present a variable voltage depending on the rotation of the stick. The joystick is spring-loaded, meaning the mechanism will always return to its centered position once released.
 
-![Analogue Joystick Module]()
+![Analogue Joystick Controller](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_039-1.jpeg)
 
 ## Prototypes
 
