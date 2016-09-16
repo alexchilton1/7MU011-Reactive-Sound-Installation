@@ -478,4 +478,6 @@ The idea was to have a series of wooden boxes with the sensors either mounted in
 
 ![Second Sketch](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_042-4.jpeg)
 
-Unfortunately, it was soon realised that if the ultrasonic sensors were situated on the sides then every time the user moved forward to activate an IR sensor they had the potential to unintentionally control the ultrasonic sensors as well.
+Unfortunately, it was soon realised that if the ultrasonic sensors were situated on the sides then every time the user moved forward to activate an IR sensor they had the potential to unintentionally control the ultrasonic sensors as well. Because of this the ultrasonic sensors were moved to the top of the box and placed back to back, this is because they suffer from crosstalk if they are placed closed together facing the same direction. Each ultrasonic sensor is combined with an additional sensor, the left side contains the touch capacitive sensor and the right is equiped with the analogue joystick. The ultrasonics are placed far back and the two other sensors are placed right on the edge, the reason behind this is to offer the user the ability to place on hand on the touch sensor or joystick whilst using their other hand or torso to control the ultrasonic sensor. The laser sensor and LDR module are placed on the top left box and the Arduinos remain in the same position.
+
+![Final Sketch](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_042-5.jpeg)
