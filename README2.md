@@ -34,7 +34,8 @@ VF - Forward Voltage
 This project is a sound installation, which is situated under the umbrella of sound art. It includes multiple audio generation techniques such as generative music, artificial neural networks and phase distortion synthesis to name a few.
 
 ## Prerequisites
-In order to be able to use the sound installation, Pure Data extended is required to be installed on your system. Pure Data is free and available here [https://puredata.info/downloads/pd-extended](https://puredata.info/downloads/pd-extended) follow the guide online on how to set up Pure Data on your operating system. The physical sound installation with the sensors is also required.
+In order to be able to use the sound installation, Pure Data extended is required to be installed on your system. Pure Data is free and available here [https://puredata.info/downloads/pd-extended](https://puredata.info/downloads/pd-extended) follow the guide online on how to set up Pure Data on your operating system. Once installed, make sure you have all of the files downloaded available here [https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0](https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0).
+The physical sound installation with the sensors is also required.
 
 ## Build Structure Overview (Initial plan of the stages in the project)
 ###### Sensors
