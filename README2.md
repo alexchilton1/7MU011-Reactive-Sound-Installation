@@ -489,4 +489,47 @@ After finalising the design a visit was paid to a carpenter named Maurice Northa
 
 All three boxes were then bolted together. A final small wooden frame was constructed and attached to the top for the PIR sensor. Five short pieces of wood were cut and glued into the boxes ready for the IR sensors to be attached to.
 
-![Box Frame Bare](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_045.jpeg)![Box Frame with IR Sensor](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_046.jpeg)
+![Box Frame Bare](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_045.jpeg)
+![Box Frame with IR Sensor](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_046.jpeg)
+
+On the back of the large box the four Arduinos were laid out and measured ready to be attached. The Arduinos would be attached to terminal adapters which allow cables to be connected to them without the need of a soldering iron, this not only removed an extra job but also provided a study way to mount the boards onto the box.
+
+![First Arduino Mounted](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_047.jpeg)
+![All Arduinos Mounted](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_048.jpeg)
+
+Next the PIR sensor was screwed to the wooden brace on the top of the box, the location was actually perfect for the job the sensor carried out.
+
+![PIR Sensor Connected to Brace](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_049.jpeg)
+
+The ultrasonic mounting brackets were attached back to back, the touch sensor and joystick were also connected according to the design sketch.
+
+![Mounting Brackets and Two Sensors](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_052.jpeg)
+
+The laser sensor and LDR module were connected on the top left of the box and the five IR sensors were connected to the first Arduino, as previously discussed, the external LEDs for these sensors were not included as they were no longer necessary.
+
+![Five IR Sensors](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_053.jpeg)
+![First Arduino Connections](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_054.jpeg)
+
+Before the joystick, touch sensor, laser sensor and LDR module were soldered a few last minute adjustments were made. The third ultrasonic sensor was removed and the switch for the joystick was implemented. However, the switch only acted as a momentary push button and it needed to behave as a toggle, so the code had to be altered to accommodate these changes.
+```
+void JoySwitch(int switchPin) {
+  reading = digitalRead(switchPin);
+  if (reading == HIGH && previous == LOW && millis() - time > debounce) {
+    if (state == HIGH)
+    state = LOW;
+    else
+    state = HIGH;
+
+    time = millis();
+  }
+    digitalWrite(led1, state);
+    previous = reading;
+}
+```
+The integers state, reading and previous are declared in the setup. Time, measured in milliseconds, is declared as a long variable as it will quikcly become a larger number than can be stored in an int. There is another long variable called debounce, this is a minimum delay between toggles to ignore noise. The above code states that if the input just went from LOW and HIGH and has waited long enough to ignore any noise on the circuit, toggle the output pin and vice versa while remembering the time. The state value will be 0 or 1, which will turn and LED off and on respectively.
+
+![Last Minute Prototyping](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_055.jpeg)
+
+After this the two ultrasonic sensors were added and connections were soldered.
+
+![All Sensors Present](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_057.jpeg)
