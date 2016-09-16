@@ -526,14 +526,23 @@ The learning rule has been adapted to work along user interaction with the senso
 
 ![Learning Algorithm](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/15.png)
 
-The outcome of the 24 neurons are sent to the noise bank, there they are received by 24 toggle boxes
+The outcome of the 24 neurons are sent to the noise bank, there they are received by 24 toggle boxes. If the neuron does not fire, produces a 0, the respective modulated white noise will not be audible, however, if the neuron does fire, produces a 1, the respective modulated white noise will be heard.
 
-Since loops are present in this type of network it becomes a non-linear, dynamic system, which changes consistently. This is due to connections forming between layers of neurons, resulting in the generation of a directed cycle, which, subsequently creates a dynamic state allowing the network to exhibit dynamic temporal behavior.
+![Noise Bank](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/16-1.png)
 
+All of the outputs are sent to one vline~ object. 
 
-### Distortion Synthesiser
+![24 Outputs](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/17.png)
+
+If the main toggle is switched on, then the artifical neural network will become active, this toggle also controls the metro object for the learning algorithm.
+
+![ANN vline~](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/18.png)
+
+Depending on the threshold, more or less neurons will fire. This will affect the overall tonal density of the white noise generator. Since loops are present in this type of network it becomes a non-linear, dynamic system, which changes consistently. This is due to connections forming between layers of neurons, resulting in the generation of a directed cycle, which, subsequently creates a dynamic state allowing the network to exhibit dynamic temporal behavior.
 
 ### Spectral Bank
+
+### Distortion Synthesiser
 
 ### Perceptual Artifical Reverb
 
