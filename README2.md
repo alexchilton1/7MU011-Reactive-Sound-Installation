@@ -541,8 +541,25 @@ If the main toggle is switched on, then the artifical neural network will become
 Depending on the threshold, more or less neurons will fire. This will affect the overall tonal density of the white noise generator. Since loops are present in this type of network it becomes a non-linear, dynamic system, which changes consistently. This is due to connections forming between layers of neurons, resulting in the generation of a directed cycle, which, subsequently creates a dynamic state allowing the network to exhibit dynamic temporal behavior.
 
 ### Spectral Bank
+This section is an audio filter bank that uses multiple bandpass filters to attenuate frequencies between 100Hz and 1250Hz. White noise is the audio source used for this filter bank, it is ideal as it possesses all a full range of frequencies.
+
+![Spectral Bank Overview](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/19.png)
+
+The value from an ultrasonic sensor, scaled between 0 and 120, will raise as the user moves closer. As the user presses down on the touch sensor it will trigger two random values. The first being a division value between 1 and 5, this number is used so that the different filter frequencies do not raise with the same value. The user can remain at the same frequency and keep pressing the touch sensor to dynamically change the way the spectral bank sounds. The second value is a random millisecond variable, set between 1000 and 2000, that will make each fader move at a different speed.
+
+![Spectral Bank Controls](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/20.png)
+
+The final outputs from that section are mapped to the 10 faders, which will be raised depending on the parameters selected by the variables. The white noise will be running through each of the different filters and the fader value will be divided raise each of the volumes bewteen 0 and 1.
+
+![Filter Bank](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/21.png)
+
+Finally, in the last part of the signal chain is a flanger, which mixes two identical signals together, one of which is delayed by a small amount that produces a swept comb-filter effect. The flanger is set to modulate faster the further away the user gets from the sensor.
+
+![Flanger](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/22.png)
 
 ### Distortion Synthesiser
+
+
 
 ### Perceptual Artifical Reverb
 
