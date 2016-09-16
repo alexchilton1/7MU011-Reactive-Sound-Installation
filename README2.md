@@ -3,6 +3,7 @@ This project is a sound installation that responds to stimuli and continuously e
 
 ## Acronyms/Abbreviations/Symbols
 ```
+ANN - Artificial Neural Network
 cm - centimeters
 DC - Direct Current
 EEPROM - Electrically Erasable Programmable Read-only Memory
@@ -31,7 +32,7 @@ VF - Forward Voltage
 ° - Degrees
 ```
 ## Background
-This project is a sound installation, which is situated under the umbrella of sound art. It includes multiple audio generation techniques such as generative music, artificial neural networks and phase distortion synthesis to name a few.
+This project is a sound installation, which is situated under the umbrella of sound art. Sound installation, deriving from sound art and sound sculpture, is an inter-disciplinary and time based art form. Sound art is an artistic field of study, in which, sound is employed as a medium. This project includes multiple audio generation techniques such as generative music, artificial neural networks and phase distortion synthesis to name a few. It employs the use of HCI to provide analogue sensors with the ability to control virtual parameters in a software audio workstation.
 
 ## Prerequisites
 In order to be able to use the sound installation, Pure Data extended is required to be installed on your system. Pure Data is free and available here [https://puredata.info/downloads/pd-extended](https://puredata.info/downloads/pd-extended) follow the guide online on how to set up Pure Data on your operating system. Once installed, make sure all of the files have been downloaded, available here [https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0](https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0).
@@ -558,10 +559,35 @@ Finally, in the last part of the signal chain is a flanger, which mixes two iden
 ![Flanger](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/22.png)
 
 ### Distortion Synthesiser
+This section within the installation is controlled by an ultrasonic range finder and an analogue joystick. The range finder controls the carrier wave value and is set to only trigger values when an obstacle is within a predetermined range. This is indicated by a bicolour LED, when an obstacle moves within the target range of the sensor a variable value is sent to Pure Data. The closer an obstacle is to the sensor, the higher the phasor value will be. The index and two additional waveform values are decided by using the analogue joystick. The x-axis controls the index value, this value is variable and ranges from 0 to 1000. Finally the y-axis controls both the additional waveform values; which are specified in hertz. These are also scaled between 0 and 1000, however, the first waveform reads the y-axis value whereas the second waveform is reversed. The joystick also controls whether the synthesiser is turned on or off, the push button has been programmed to behaviour as a toggle. An LED has been connected as a visual aid, so when the light is on or off, the synthesiser is on or off respectively.
 
-
+![Phase Distortion Controls](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/23.png)
+![Phase Distortion Synthesiser](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/24.png)
 
 ### Perceptual Artifical Reverb
+The reverb section in this installation is constructed from several different aspects. There are four main controllable elements; a roomsize control, a dampen control which is a lowpass filter connected to the comb-filters, finally a dry and wet amount.
+
+![Reverberator Controls](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/25.png)
+
+There are two sets of four comb-filters for each side, left and right, which are specifically tuned to sound less metallic and harsh.
+
+![Internal Layout](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/26.png)
+![Reverberator Tunings](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/29.png)
+
+This totals eight tuned comb-filters per side which all run in parallel.
+
+![Comb-Filters](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/27.png)
+
+These are routed into their respective left and right diffusion sections, inside these contain four all-pass filters in series and affect how fast or slow the initial reflections of the artificial reverberant space are smoothed out over time. 
+
+![All-Pass Filters](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/28.png)
+
+The final section is a wet and dry mix, offering two separate channels like in most digital audio workstations not by turning down one to increase the other.
+
+### Completed Patch
+The audio section of the installation is now complete and all of the chosen generation techniques have been built and implemented.
+
+![Completed Audio Section](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/30.png)
 
 ## Designing the Installation Structure
 The initial idea for layout of the sound installation was to set up small groups of sensors in multiple places within a small space at the chosen loaction, which is a cemetery. However, due to there being no power and not many places to suspend sensors it was decided that the installation would be an all-in-one style scaled down version. With this in mind, a few sketches were created of how the design might look. These designs incorporated considerations such as cost, accessibility, usability and mobility. It was important to create a product that could be moved easily without having to dismantle the entire array, that was inexpensive and that could be accessed easily by the audience.
