@@ -453,9 +453,21 @@ Once this was complete, everything was set up and ready to use.
 
 ## Pure Data Patch Initial Build
 
+### Ambient Tone Generator
+
+### Sample Triggers
+
 ## Sensor Mapping Test
 
 ## Finalising the Pure Data Patch 
+
+### White Noise Generator
+
+### Distortion Synthesiser
+
+### Spectral Bank
+
+### Perceptual Artifical Reverb
 
 ## Designing the Installation Structure
 The initial idea for layout of the sound installation was to set up small groups of sensors in multiple places within a small space at the chosen loaction, which is a cemetery. However, due to there being no power and not many places to suspend sensors it was decided that the installation would be an all-in-one style scaled down version. With this in mind, a few sketches were created of how the design might look. These designs incorporated considerations such as cost, accessibility, usability and mobility. It was important to create a product that could be moved easily without having to dismantle the entire array, that was inexpensive and that could be accessed easily by the audience.
