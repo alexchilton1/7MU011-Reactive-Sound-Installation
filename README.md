@@ -268,7 +268,7 @@ This prototype was used to test the different values the controller was capable 
 
 **Multiple Ultrasonic Sensors**
 
-This prototype is a reworked version of the previous one, it allows multiple separate sensors to print their individual values over serial. With this sensor especially, this method allows for different trigger parameters to be specified so they can all react differently. Firstly the trigger and echo pins from the sensors have to be defined along with the LEDs, this sketch also needs a long command; long variables are extended size variables for number storage. Duration, distance and the sensor groups will be detailed later in the explanation.
+This prototype is a reworked version of the previous one, it allows multiple separate sensors to print their individual values over serial. With this sensor especially, this method allows for different trigger parameters to be specified so they can all react differently. Firstly the trigger and echo pins from the sensors have to be defined along with the LEDs, this sketch also requires a long command; long variables are extended size variables for number storage. Duration, distance and the sensor groups will be detailed later in the explanation.
 ```
 #define trigPin1 A1  // defining first trigger pin, this pin will receive a short pulse in microseconds (µs) to begin ranging. Module sends out 8 cycle burst of ultrasound at 40kHz to raise  its echo. (Analogue pin 1).
 #define echoPin1 A0  // defining first echo pin, this pin will gauge distance in conjunction with the trigger pin.
@@ -303,7 +303,7 @@ void setup() {
     pinMode(led6, OUTPUT);
 }
 ```
-The loop section on this multiple sensor prototype now works a little differently than before, for example each sensor is put into a group; in this case "SonarSensor" and has its integers sepcified. This is because, the generic sensor pins will used later in there own void declarations but will not be specific to any particular sensor. Instead they will state how the sensor should behave and thus it requires separate, additional declaration to make each sensor variable otherwise they would all behave the same. The individual sensors are then given names; for this example they are "FirstSensor", "SecondSensor" and "ThirdSensor". The module uses a combination of the unique pins and the generic calculation to understand how it should behave. The serial printing is divided into three separate numbers and waits 300ms before printing each time.
+The loop section on this multiple sensor prototype now works a little differently than before, for example each sensor is put into a group; in this case "SonarSensor" and has its integers specified. This is because, the generic sensor pins will be used later in their own void declarations but will not be specific to any particular sensor. Instead they will state how the sensor should behave and thus require a separate, additional declaration to make each sensor variable otherwise they would all behave the same. The individual sensors are then given names; for this example they are "FirstSensor", "SecondSensor" and "ThirdSensor". The module uses a combination of the unique pins and the generic calculation to understand how it should behave. The serial printing is divided into three separate numbers and waits 300ms before printing each time.
 ```
 void loop() {
     SonarSensor(trigPin1, echoPin1); //adding the SonarSensor into the loop, to be recalled later and with intergers specified to the corresponding pins and leds.
@@ -322,7 +322,7 @@ void loop() {
     delay(300); //print interval in ms. Recommended to use above 60ms to prevent trigger and echo signals becoming confused.
 }
 ```
-How the SonarSensor group functions in the sketch now has to be delared; this is so that it can be recalled in the loop section. The "void" indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed HIGH for at least 10µs before waiting for the echo to return the signal. So it sets to LOW, pulses HIGH then goes LOW. When the echo pin receives a HIGH return pulse, the time that elapses equals the duration. The distance uses the duration in the calculation as seen below. Now, because the sensors have been grouped and are ready to be recalled in the loop section, their behaviour can now be written here. If the first sensor encounters an obstacle that is closer than 20cm it turns LED1 on and LED2 off. If the obstacle is further than 20cm the reverse happens. Because the LED used is a bi-colour green and red LED, both times it is impacting the same one.
+How the SonarSensor group functions in the sketch now has to be declared; this is so that it can be recalled in the loop section. The "void" indicates that the function is expected to return no information to the function from which it was called; this means actions can be executed in the functions "setup" and "loop" but it will not extend to the larger programme. The trigger and echo pins are declared as the two that are in use. The calculation has been written in conjunction with the operational information from the datasheet; this stated that the trigger pin had to be pulsed hig for at least 10µs before waiting for the echo to return the signal. So it sets to low, pulses high then goes low again. When the echo pin receives a high return pulse, the time that has elapsed equals the duration. The distance uses the duration in the calculation as seen below. Now, because the sensors have been grouped and are ready to be recalled in the loop section, their behaviour can now be written here. If the first sensor encounters an obstacle that is closer than 20cm it turns LED1 on and LED2 off. If the obstacle is further than 20cm the reverse happens. Because the LED used is a bi-colour green and red LED, both times it is impacting the same one.
 ```
 void SonarSensor(int trigPin, int echoPin) {
     digitalWrite(trigPin, LOW);
@@ -359,13 +359,13 @@ void SonarSensor(int trigPin, int echoPin) {
   }
 }
 ```
-The other two sensors are programmed the same way. As this was the first attempt at a multiple sensor sketch it did take quite a lot of trial and error to get it working correctly. Using if else if was the way the sketch finally became usuable and worked in the corect manner. However, through perseverance, the idea became a reality and offered a template to start working from on other mulitple sensor sketches.
+The other two sensors are programmed the same way. As this was the first attempt at a multiple sensor sketch it did take quite a lot of trial and error to get it working correctly. Using if else if was the way the sketch finally became usuable and worked in the corect manner. However, through perseverance, the idea became a reality and offered a template to start working from on other multiple sensor sketches.
 
 ![Ultrasonic Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_034.jpeg)
 
 **Multiple IR Sensors**
 
-This prototype is again a reworked version of the previous one. It allows multiple separate sensors to print their individual values over serial. Unlike the ultrasonic sensor, the range does not need to be specified in the code as it uses an onboard potentiometer altered by a screwdriver. The integers are specified so that the individual sensors can write their data to the serial monitor separately. The five sensors are split into five groups, all using the same variable; obstacle.
+This prototype is again a reworked version of the previous one. It allows multiple separate sensors to print their individual values over serial. Unlike the ultrasonic sensor, the range does not need to be specified in the code as it uses an on-board potentiometer altered with a screwdriver. The integers are specified so that the individual sensors can write their data to the serial monitor separately. The five sensors are split into five groups, all using the same variable; obstacle.
 ```
 void ObstacleSensor(int obstaclePin)
   {
@@ -385,13 +385,13 @@ The sensors will print their values over serial, depending on if an obstacle is 
 
 **Multiple PIR Sensors**
 
-The first PIR sensor is acting as a motion sensing toggle for the ambient tone generator, the idea was to add a second sensor and use it in a similar way. Unfortunately, due to the way the print function works, when one PIR sensor detects motion and prints its value, the other sensor loses its ability to print over serial. Both sensors could be made to work at the same time, but their values continuously printed to the serial monitor and this was not the desired effect. Because of this, the decision was made to use only one PIR sensor as originally intended.
+The first PIR sensor will be acting as a motion sensing toggle for the ambient section in the patch. The idea was to add a second sensor and use it in a similar way. Unfortunately, due to the way the print function works, when one PIR sensor detects motion and prints its value, the other sensor loses its ability to print over serial. Both sensors could be made to work at the same time, but their values continuously printed to the serial monitor and this was not the desired effect. Because of this, the decision was made to use only one PIR sensor as originally intended.
 
 ![PIR Second Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_037-1.jpeg)
 
 **Multiple Sensor Prototype**
 
-This prototype contains five different sensor; a touch capacitive sensor, an ultrasonic range finder, an analogue joystick, a laser sensor module and an LDR module. The idea behind this was to put all of the leftover sensors on their own Arduino board, mostly because the PIR has to remain on its own, there were already five IR sensors on one board and obviously, the more sensors on a board the slower each subsquent sensor will respond and the more power they will draw. By this point, programming this collection of sensors was fairly straight forward. As usual, it starts by defining the integers and specifying the long values.
+This prototype contains five different sensors; a touch capacitive sensor, an ultrasonic range finder, an analogue joystick, a laser sensor module and an LDR module. The idea behind this was to put all of the leftover sensors on their own Arduino board, mostly because the PIR has to remain on its own, there were already five IR sensors on one board and obviously, the more sensors on a board the slower each subsquent sensor will respond and the more power they will draw. By this point, programming this collection of sensors was fairly straight forward. As usual, it starts by defining the integers and specifying the long values.
 ```
 #define trigPin1 A1  //defining first trigger pin, this pin will receive a short pulse in microseconds (µs) to begin ranging. Module sends out 8 cycle burst of ultrasound at 40kHz to raise  its echo. (Analogue pin 1).
 #define echoPin1 A0  //defining first echo pin, this pin will gauge distance in conjunction with the trigger pin.
@@ -406,7 +406,7 @@ This prototype contains five different sensor; a touch capacitive sensor, an ult
 
 long duration, distance, ctsValue, psrValue, joyValue, FirstSensor, SecondSensor, ThirdSensor, FourthSensor, FifthSensor;
 ```
-From here, a simple case of starting the serial monitor and specifying the pinModes from the sensors. In the loop, stating what the different groups do and making sure they print and at what interval. Finally its a case of stating what the each group actually does.
+From here, a simple case of starting the serial monitor and specifying the pinModes for the sensors. In the loop, stating what the different groups do, making sure they print and at what interval. Finally it is a case of stating what each group actually does.
 ```
 void SonarSensor(int trigPin, int echoPin) {
     digitalWrite(trigPin, LOW);
