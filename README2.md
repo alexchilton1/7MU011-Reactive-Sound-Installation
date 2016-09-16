@@ -34,7 +34,7 @@ VF - Forward Voltage
 This project is a sound installation, which is situated under the umbrella of sound art. It includes multiple audio generation techniques such as generative music, artificial neural networks and phase distortion synthesis to name a few.
 
 ## Prerequisites
-In order to be able to use the sound installation, Pure Data extended is required to be installed on your system. Pure Data is free and available here [https://puredata.info/downloads/pd-extended](https://puredata.info/downloads/pd-extended) follow the guide online on how to set up Pure Data on your operating system. Once installed, make sure you have all of the files downloaded available here [https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0](https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0).
+In order to be able to use the sound installation, Pure Data extended is required to be installed on your system. Pure Data is free and available here [https://puredata.info/downloads/pd-extended](https://puredata.info/downloads/pd-extended) follow the guide online on how to set up Pure Data on your operating system. Once installed, make sure all of the files have been downloaded, available here [https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0](https://drive.google.com/open?id=0By6_1xhwTEChNi1Fc25XaU5hcE0).
 The physical sound installation with the sensors is also required.
 
 ## Build Structure Overview (Initial plan of the stages in the project)
@@ -511,8 +511,25 @@ The three sample section were connected to the first three IR sensors, triggerin
 With this all working as intended, it was time to continue building the patch.
 
 ## Finalising the Pure Data Patch 
+Now that the first two audio generation sections have been built and connected to the sensors it is time time finish building and implementing the rest of the audio sections.
 
 ### White Noise Generator
+The white noise generator uses a feedback artificial neural network to generate white noise, modulating from 0 to 1Hz, which is filtered through 24 bandpass filters at different frequencies ranging from 46 to 69Hz. Once the network is active the artificial neurons will fire and will either trigger a 0 or 1, a low or high signal, through the snapshot function. The output depends on the value of the threshold, as the threshold value changes it affects the amount of neurons that are allowed to pass, which changes the sound of the modulating white noise.
+
+![ANN Overview](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/13.png)
+
+The network is 3x3, incorporates feedback and in this installation the time-scale dynamics are set to 1ms via the snapshot object, so the response is extremely fast. 
+
+![Neural Network](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/14.png)
+
+The learning rule has been adapted to work along user interaction with the sensors. The sensors with variable outputs, such as the ultrasonic or joystick modules, have their outputs monitored and averaged. The averages are summed, multiplied, averaged once more and finally reversed. This final number is used as a millisecond counter to trigger different threshold values for the network; which means the more the user interacts with the sensors, the faster the threshold will change, which will make the network more dynamic. The threshold is the last deciding factor in whether the neurons fire. If the output of the neuron is below the threshold, it will not fire.
+
+![Learning Algorithm](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/15.png)
+
+The outcome of the 24 neurons are sent to the noise bank, there they are received by 24 toggle boxes
+
+Since loops are present in this type of network it becomes a non-linear, dynamic system, which changes consistently. This is due to connections forming between layers of neurons, resulting in the generation of a directed cycle, which, subsequently creates a dynamic state allowing the network to exhibit dynamic temporal behavior.
+
 
 ### Distortion Synthesiser
 
