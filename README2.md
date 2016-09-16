@@ -482,9 +482,11 @@ Unfortunately, it was soon realised that if the ultrasonic sensors were situated
 
 ![Final Sketch](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_042-5.jpeg)
 
-After finalising the design a visit was paid to a carpenter named Maurice Northall. After showing him the design, sensors and explaining how it needed to operate, precise measurements were drawn up for each box. He then proceeded to cut the wood and assemble all three boxes.
+After finalising the design a visit was paid to a carpenter named Maurice Northall. After showing him the design, sensors and explaining how it needed to operate, we calculated precise measurements for each box. He then proceeded to cut the wood and assemble all three boxes.
 
 ![Smaller Box](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_044.jpeg)
 ![All Three Boxes](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_043.jpeg)
 
-After this all three boxes were bloted together.
+All three boxes were then bolted together. A final small wooden frame was constructed and attached to the top for the PIR sensor. Five short pieces of wood were cut and glued into the boxes ready for the IR sensors to be attached to.
+
+![Box Frame Bare](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_045.jpeg)![Box Frame with IR Sensor](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_046.jpeg)
