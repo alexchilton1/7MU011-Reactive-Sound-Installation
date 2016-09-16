@@ -499,6 +499,13 @@ Inside each sample bank is the structure for the way the sample playback operate
 ![Sample Playback](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/12.png)
 
 ## Sensor Mapping Test
+The ambient tone generator does not require multiple input triggers to operate, because of this, it receives its input from the PIR sensor. If the value is high then the generator becomes active, it will remain active until it no longer detects motion. A metro object is toggled on and has its millisecond variable randomised. 
+
+
+
+![IR Sensor Sample Triggers](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_068.jpeg)
+
+With this all working as intended, it was time to continue building the patch.
 
 ## Finalising the Pure Data Patch 
 
