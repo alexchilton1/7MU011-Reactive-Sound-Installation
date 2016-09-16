@@ -452,10 +452,23 @@ Once this was complete, everything was set up and ready to use.
 ![Multiple Sensor Prototype](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_040.jpeg)
 
 ## Pure Data Patch Initial Build
+The chosen location for the sound installation is a cemetery in Birmingham, the purpose of this project is to engage with the environment and add an extra dimension to the surroundings. Due to the location being a cemetery, the theme of the audio was to create and ominous and unnerving atmosphere. With this in mind, various audio techniques that could potentially create appropriate results we chosen and researched. The goal of the first patch iteration was to produce a ghostly ambient tone generator and a sample playback machine that could be used to trigger various relevant field recordings and samples.
+
+![First Patch Iteration](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/1.png)
 
 ### Ambient Tone Generator
+The ambient tone generator is the first section in the Pure Data patch and is based on a system that creates ever-different and changing music known as generative music. The tone generator produces a sound, which is the outcome of multiple waveforms being summed together. Once the generator is triggered, a MIDI value is selected, every 15000 to 25000 milliseconds, in relation to the chosen scale. This value then splits down several different routes and has a range of variables added to it before it reaches its designated oscillator. The individual numbers are multiplied by 4 and have a range of millisecond variables running into a vline~ object, this causes the numbers to slowly increase of decrease to their chosen end point. Each number is added together with an external oscillator value and set to modulate at a particular rate. When combined with a reverb using early reflections, the modulation depth will increase creation an eerie tone. These oscillators are summed and then single waveform is output.
+
+![Ambient Tone Generator](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/2.png)
+
+The tabread function has the choice of five different scales, these are created by specifying the relevant intervals. From this, a number will be selected which corresponds to a MIDI note from any key within the scale.
+
+![Scale Values](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/3.png)
+
+This generator, as long as it is active, will continuously create a tone based on a set of predefined rules. The tone generator has been based up the idea of generative music because of its responsiveness to user input and its innate ability to adapt to ever changing circumstances. It is based on sets of rules that determine iterative sequences, shifting permutations and random routine thus creating unique experiences, even when completing the same task repeatedly.
 
 ### Sample Triggers
+
 
 ## Sensor Mapping Test
 
