@@ -526,10 +526,14 @@ void JoySwitch(int switchPin) {
     previous = reading;
 }
 ```
-The integers state, reading and previous are declared in the setup. Time, measured in milliseconds, is declared as a long variable as it will quikcly become a larger number than can be stored in an int. There is another long variable called debounce, this is a minimum delay between toggles to ignore noise. The above code states that if the input just went from LOW and HIGH and has waited long enough to ignore any noise on the circuit, toggle the output pin and vice versa while remembering the time. The state value will be 0 or 1, which will turn and LED off and on respectively.
+The integers state, reading and previous are declared in the setup. Time, measured in milliseconds, is declared as a long variable as it will quikcly become a larger number than can be stored in an int. There is another long variable called debounce, this is a minimum delay between toggles to ignore noise. The above code states that if the input just went from LOW and HIGH and has waited long enough to ignore any noise on the circuit, toggle the output pin and vice versa while remembering the time. The state value will be 0 or 1, which will turn and LED off and on respectively. When the switch is toggled on, the joystick will affect certain parameters within Pure Data and when it is toggled off it turns off the sound to the phase distortion section.
 
 ![Last Minute Prototyping](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_055.jpeg)
 
 After this the two ultrasonic sensors were added and connections were soldered.
 
 ![All Sensors Present](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_057.jpeg)
+
+The final LEDs were put into place for the two ultrasonic range finders, touch sensor and joystick switch. These were soldered and connected to the relevant Arduinos. One final test was completed to make sure everything functioned as expected, with that the whole process was complete.
+
+![Finished Structure](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_065.jpeg)
