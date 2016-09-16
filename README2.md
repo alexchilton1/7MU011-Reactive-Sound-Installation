@@ -468,7 +468,35 @@ The tabread function has the choice of five different scales, these are created 
 This generator, as long as it is active, will continuously create a tone based on a set of predefined rules. The tone generator has been based up the idea of generative music because of its responsiveness to user input and its innate ability to adapt to ever changing circumstances. It is based on sets of rules that determine iterative sequences, shifting permutations and random routine thus creating unique experiences, even when completing the same task repeatedly.
 
 ### Sample Triggers
+The sample playback machine is capable of playing a sample while possessing the ability to alter its volume, pitch and direction. There are nine samples in total and they are split into three groups; 1-3, 4-6 and 7-9.
 
+![Sample Groups](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/4.png)
+
+They will use one IR sensor each, this means every time a sensor is triggers it has the chance to play one of three samples randomly.
+
+![Three Samples](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/5.png)
+
+Not only that, each sampler is polyphonic and has eight voices, meaning up to eight of the same sample can play at once. This helps to prevent the samples from ending prematurely to start again. Also each time a sample is triggered it has the possibility to be transposed to a higher or lower pitch, as well as possibly playing in reverse.
+
+![Transposition and Direction](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/6.png)
+
+The samples are preloaded into the patch so the user does not have to locate them, as soon as the patch is opened the samples are ready to work; this is due to the message boxes with the relevant information being connected to a loadbang.
+
+![Preloaded Samples](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/7.png)
+
+The samples are read from a table, so it is important to first write them to one.
+
+![Table Samples](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/8.png)
+![Table 1](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/9.png)
+
+The samples are split into nine different audio banks, inside each one are the receives for the transpositional value, direction, volume and sample length. As before there are eight separate sample abstractions due to the polyphony aspect.
+
+![Sample Banks](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/10.png)
+![Individual Sample Banks](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/11.png)
+
+Inside each sample bank is the structure for the way the sample playback operates.
+
+![Sample Playback](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/12.png)
 
 ## Sensor Mapping Test
 
