@@ -501,7 +501,7 @@ Inside each sample bank is the structure for the way the sample playback operate
 ## Sensor Mapping Test
 The ambient tone generator does not require multiple input triggers to operate, because of this, it receives its input from the PIR sensor. If the value is high then the generator becomes active, it will remain active until it no longer detects motion. A metro object is toggled on and has its millisecond variable randomised. 
 
-
+The three sample section were connected to the first three IR sensors, triggering a sensor every now and then worked well and constantly triggering the sensors also created some interesting results. This is due to the samples having multiple variations, even if the same sample is triggered twice, it is very probable that it will be transposed and and possibily playing in reverse.
 
 ![IR Sensor Sample Triggers](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/File_068.jpeg)
 
