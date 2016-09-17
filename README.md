@@ -9,7 +9,7 @@ DC - Direct Current
 EEPROM - Electrically Erasable Programmable Read-only Memory
 HCI - Human-Computer Interaction
 Hz - Hertz
-IC - Intergrated Circuit
+IC - Integrated Circuit
 IDE - Integrated Development Environment
 IF - Forward Current
 IR - Infrared
@@ -415,7 +415,7 @@ void SonarSensor(int trigPin, int echoPin) {
     delayMicroseconds(10); //supplying the trigger pin with short 10µs pulse.
     digitalWrite(trigPin, LOW);
     duration = pulseIn(echoPin, HIGH);
-    distance = (duration/2) / 29.1; //Distance = (Time x SpeedOfSound) /2. The "2" is because the sound has to travel back and forth. /29 because sound travels at approximately 340 meteres per second, which corresponds to about 29.412µs per cm. The easy way to read the formula: cm = ((µs/2)/29). If it takes 100µs for the ultrasonic sound to bounce back, then the distance is ((100/2)/29) or approximately 1.7cm.
+    distance = (duration/2) / 29.1; //Distance = (Time x SpeedOfSound) /2. The "2" is because the sound has to travel back and forth. /29 because sound travels at approximately 340 metres per second, which corresponds to about 29.412µs per cm. The easy way to read the formula: cm = ((µs/2)/29). If it takes 100µs for the ultrasonic sound to bounce back, then the distance is ((100/2)/29) or approximately 1.7cm.
     if (FirstSensor < 63) { 
     digitalWrite(led1, HIGH);
     digitalWrite(led2, LOW);
