@@ -159,7 +159,7 @@ The analogue joytsick controller has three outputs; two analogue 10K potentiomet
 
 ### First Prototypes
 
-After the datasheets for the modules had been collected and studied, it was time to start progamming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The wirinh layout along with its capability are the framework in deciding how it must be programmed.
+After the datasheets for the modules had been collected and studied, it was time to start programming their behaviour, this would not only decide how they operate but it would also define what information would be sent over serial to Pure Data. For each sensor the respective datasheet had to be investigated to help specify what the sensor was actually capable of doing and how it had to be wired. The wiring layout along with its capability are the framework in deciding how it must be programmed.
 
 **Ultrasonic Sensor**
 
@@ -175,7 +175,7 @@ An LED is also used as a visual prompt to the current status of the sensor. The 
 
 **IR Proximity Sensor**
 
-The IR sensor has 3 pins: VCC, GND and an output pin which sends either a high or low signal depending on its detection status. This sensor is capable of detecting the presence of an object, however, it is not capable of determining the distance of the obstruction. This sensor is ideal for triggering on/off values and coupled with Pure Data it could be used to randomise variables within a sequence or prompt the introduction of a new piece of audio to the overall mix. The infrared transmitter emits infrared radiation. When there is an obstacle in range, the wave bounces back to the receiver and the circuit becomes active. The range of the sensor can be adjusted by its on-board potentiometer, the datasheet claims that the range is 2cm-30cm but this does not seem to be the case. The safe range before the sensor becomes unpredicable seems to be around 25cm, any more and the module becomes unreliable. Also the sensor suffers heavily from light interference, natural light seems to be the worst. Sunlight makes the module very unreliable and artifical light also seems to affect its reliability.
+The IR sensor has 3 pins: VCC, GND and an output pin which sends either a high or low signal depending on its detection status. This sensor is capable of detecting the presence of an object, however, it is not capable of determining the distance of the obstruction. This sensor is ideal for triggering on/off values and coupled with Pure Data it could be used to randomise variables within a sequence or prompt the introduction of a new piece of audio to the overall mix. The infrared transmitter emits infrared radiation. When there is an obstacle in range, the wave bounces back to the receiver and the circuit becomes active. The range of the sensor can be adjusted by its on-board potentiometer, the datasheet claims that the range is 2cm-30cm but this does not seem to be the case. The safe range before the sensor becomes unpredicable seems to be around 25cm, any more and the module becomes unreliable. Also the sensor suffers heavily from light interference, natural light seems to be the worst. Sunlight makes the module very unreliable and artificial light also seems to affect its reliability.
 
 The sensor has its VCC and GND pins connected to the Arduino the same way as the ultrasonic sensor, the out pin is routed to A0. The sensor has been programmed to know, in compliance with the datasheet, that if and obstacle is within its agreed range it outputs a low signal. If the sensor does not detect an obstruction then its output is high. An LED has been connected to digital pin 12 to help aid this detection process visually. With the source voltage from the Nano at 5V, the VF at 2.5V and the IF at 30mA, the recommended resistor was again at 100Ω. When the module detects an obstacle, the LED turns blue, when no obstacle is present the LED switches off.
 
@@ -227,7 +227,7 @@ There are a few known issues with capacitive sensors; especially when it comes t
 
 **Laser Sensor and Laser Receiver Module**
 
-The way this circuit was designed to work, was with the laser beaming its output into the LDR of the laser receiver module which would the output a variable. If the signal was high then the beam was present, if low the beam of light had been broken by an obstacle. This would presumably mean that a person had walked past causing the line of sight of the sensor to become obstructed, thereby, triggering a signal over serial to PD. The laser sensor module simply required to be connected to 5V and GND pins. The receiver module was programmed similiar to how the touch sensor was coded. The input of the receiver was connected to the Arduino pin A0. Using the analogRead function within the Arduino IDE the initial value range was analised to observe output of the sensor when the laser was present and removed.
+The way this circuit was designed to work, was with the laser beaming its output into the LDR of the laser receiver module which would the output a variable. If the signal was high then the beam was present, if low the beam of light had been broken by an obstacle. This would presumably mean that a person had walked past causing the line of sight of the sensor to become obstructed, thereby, triggering a signal over serial to PD. The laser sensor module simply required to be connected to 5V and GND pins. The receiver module was programmed similar to how the touch sensor was coded. The input of the receiver was connected to the Arduino pin A0. Using the analogRead function within the Arduino IDE the initial value range was analised to observe output of the sensor when the laser was present and removed.
 ```
 void loop() {
   Serial.println(analogRead(ldrPin)); // This prints the output over serial
@@ -534,7 +534,7 @@ All of the outputs are sent to one vline~ object.
 
 ![24 Outputs](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/17.png)
 
-If the main toggle is switched on, then the artifical neural network will become active, this toggle also controls the metro object for the learning algorithm.
+If the main toggle is switched on, then the artificial neural network will become active, this toggle also controls the metro object for the learning algorithm.
 
 ![ANN vline~](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/18.png)
 
@@ -563,7 +563,7 @@ This section within the installation is controlled by an ultrasonic range finder
 ![Phase Distortion Controls](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/23.png)
 ![Phase Distortion Synthesiser](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/24.png)
 
-### Perceptual Artifical Reverb
+### Perceptual Artificial Reverb
 The reverb section in this installation is constructed from several different aspects. There are four main controllable elements; a roomsize control, a dampen control which is a lowpass filter connected to the comb-filters, finally a dry and wet amount.
 
 ![Reverberator Controls](https://github.com/alexchilton1/7MU011-Reactive-Sound-Installation/blob/Edit/Pictures/PD/25.png)
